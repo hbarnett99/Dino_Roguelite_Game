@@ -35,8 +35,8 @@ public class Application {
         GameMap mars = new GameMap(groundFactory, marsMap);
         world.addGameMap(mars);
 
-        Item rocket = new MartianItem("Rocket", '^', false);
-        rocket.getAllowableActions().add(new MoveActorAction(mars.at(7, 2), "to Mars!"));
+        MartianItem rocket = new MartianItem("Rocket", '^', false);
+        rocket.addAction(new MoveActorAction(mars.at(7, 2), "to Mars!"));
         gameMap.at(1, 1).addItem(rocket);
 
         Item spaceSuit = new MartianItem("space suit", '[', true);
