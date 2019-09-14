@@ -18,9 +18,9 @@ Testing 1 Sept
 Implementation, refining and leeway for issues - 4th Oct
 
 Henry
-Item, Egg, Corpse - 20th Sept 
-Testing - 22nd Sept 
-Player, Food, Tag, Shop - 27th Sept 
+Item, Egg, Corpse - 20th Sept
+Testing - 22nd Sept
+Player, Food, Tag, Shop - 27th Sept
 Testing - 29th Sept
 Implementation, refining and leeway for issues - 4th Oct
 
