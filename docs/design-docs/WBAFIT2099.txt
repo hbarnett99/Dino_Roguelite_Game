@@ -27,5 +27,5 @@ Implementation, refining and leeway for issues - 4th Oct
 <<<<<<< HEAD
 I accept the WBA
 =======
-I AGREE - Henry Barnett
+I accept- Henry Barnett
 >>>>>>> b54d7f0fc59bf54c040b804f9c2abce5f239efb0
