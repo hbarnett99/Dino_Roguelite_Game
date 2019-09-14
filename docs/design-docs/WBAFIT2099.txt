@@ -23,3 +23,5 @@ Testing - 22nd Sept
 Player, Food, Tag, Shop - 27th Sept 
 Testing - 29th Sept
 Implementation, refining and leeway for issues - 4th Oct
+
+I accept the WBA
