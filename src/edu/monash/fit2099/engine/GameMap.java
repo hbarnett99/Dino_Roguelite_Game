@@ -1,5 +1,8 @@
 package edu.monash.fit2099.engine;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -57,6 +60,18 @@ public class GameMap {
 
 		this.groundFactory = groundFactory;
 		createMapFromStrings(groundFactory, lines);
+	}
+	
+	/**
+	 * Constructor that reads a map from file.
+	 *
+	 * @param groundFactory Factory to create Ground objects
+	 * @param mapFile       Name of a file containing an ASCII representation of a
+	 *                      level
+	 * @throws IOException when file I/O fails
+	 */
+	public GameMap(GroundFactory groundFactory, String mapFile) throws IOException {
+		this(groundFactory, Files.readAllLines(Paths.get(mapFile)));
 	}
 
 	/**
@@ -177,6 +192,24 @@ public class GameMap {
 				at(x, y).setGround(groundFactory.newGround(groundChar));
 			}
 		}
+	}
+	
+	/**
+	 * Returns an enumerable NumberRange representing the valid X values of the game map. 
+	 * 
+	 * @return the valid X indices
+	 */
+	public NumberRange getXRange() {
+		return widths;
+	}
+
+	/**
+	 * Returns an enumerable NumberRange representing the valid Y values of the game map. 
+	 * 
+	 * @return the valid Y indices
+	 */
+	public NumberRange getYRange() {
+		return heights;
 	}
 
 	/**

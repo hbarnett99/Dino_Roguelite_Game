@@ -39,7 +39,7 @@ public class MoveActorAction extends Action {
 	public MoveActorAction(Location moveToLocation, String direction) {
 		this.moveToLocation = moveToLocation;
 		this.direction = direction;
-		this.hotKey = "";
+		this.hotKey = null;
 	}
 
 	/**

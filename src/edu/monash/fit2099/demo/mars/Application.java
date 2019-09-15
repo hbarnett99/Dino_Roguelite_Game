@@ -43,7 +43,7 @@ public class Application {
         spaceSuit.addSkill(DemoSkills.SPACETRAVELLER);
         gameMap.at(0, 1).addItem(spaceSuit);
 
-        Item stick = new WeaponItem("stick", '/', 10, "pokes");
+        Item stick = new Stick();
         gameMap.at(8, 2).addItem(stick);
 
         Actor player = new Player("The Player", '@', 100);

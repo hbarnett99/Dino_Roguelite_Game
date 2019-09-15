@@ -3,7 +3,7 @@ package edu.monash.fit2099.engine;
 /**
  * Class representing items that can be used as a weapon.
  */
-public class WeaponItem extends Item implements Weapon{
+public abstract class WeaponItem extends Item implements Weapon{
 
 	private int damage;
 	private String verb;

@@ -2,6 +2,7 @@ package edu.monash.fit2099.engine;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -17,10 +18,12 @@ public class NumberRange implements Iterable<Integer> {
 	private List<Integer> list;
 
 	public NumberRange(int start, int count) {
-		list = new ArrayList<Integer>();
+		// Iterators can be used to remove elements. Who knew?
+		List<Integer> innerList = new ArrayList<Integer>();
+		list = Collections.unmodifiableList(innerList);
 
 		for (int i = start; i < start + count; i++) {
-			list.add(i);
+			innerList.add(i);
 		}
 	}
 

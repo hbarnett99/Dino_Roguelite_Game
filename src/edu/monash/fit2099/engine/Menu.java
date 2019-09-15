@@ -26,7 +26,7 @@ public class Menu {
 		for (Action action : actions.sorted(new SortHotkeysFirst())) {
 			String hotKey = action.hotkey();
 			char c;
-			if (hotKey == null) {
+			if (hotKey == null || hotKey == "") {
 				if (freeChars.isEmpty())
 					break; // we've run out of characters to pick from.
 				c = freeChars.get(0);
