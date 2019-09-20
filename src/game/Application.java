@@ -55,9 +55,7 @@ public class Application {
 		
 		// Place a pair of protoceratops in the middle of the map
 		gameMap.at(30, 12).addActor(new Protoceratops("Protoceratops"));
-		gameMap.at(32, 12).addActor(new Protoceratops("Protoceratops"));
-		gameMap.at(30, 18).addItem(new Egg("Egg", DinosaurType.PROTOCERATOPS));
-		
+		gameMap.at(32, 12).addActor(new Protoceratops("Protoceratops"));		
 			
 		world.run();
 	}
