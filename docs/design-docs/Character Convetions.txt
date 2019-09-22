@@ -1,0 +1,9 @@
+Grass = ,
+Proceratops = P
+Baby Pro = P
+Veloc = V
+Egg = e
+Herb Food = %
+Carn Food = ^
+Corpse = c
+Tag = !

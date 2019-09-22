@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.World;
+import game.Egg.DinosaurType;
 
 /**
  * The main class for the dinosaur park game.
@@ -54,8 +55,7 @@ public class Application {
 		
 		// Place a pair of protoceratops in the middle of the map
 		gameMap.at(30, 12).addActor(new Protoceratops("Protoceratops"));
-		gameMap.at(32, 12).addActor(new Protoceratops("Protoceratops"));
-		
+		gameMap.at(32, 12).addActor(new Protoceratops("Protoceratops"));		
 			
 		world.run();
 	}
