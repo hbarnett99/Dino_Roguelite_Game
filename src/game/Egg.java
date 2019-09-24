@@ -1,15 +1,17 @@
 package game;
 import edu.monash.fit2099.engine.*;
 
-public class Egg extends PortableDinoItem{
+public class Egg extends Food{
 	
 	protected enum DinosaurType {PROTOCERATOPS, VELOCIRAPTOR}
+	
 	private int age = 0;
+	private int sellValue = 10;
 	private DinosaurType dinoType;
 	private int foodValue;
 	
 	public Egg(String name, DinosaurType initType) {
-		super(name, 'e');
+		super(name, 'e', FoodType.MEAT, 10);
 		dinoType = initType;
 	}
 	
@@ -34,5 +36,9 @@ public class Egg extends PortableDinoItem{
 			//location.addActor(new Velociraptor("Velociraptor"));
 		}
 		location.removeItem(this);
+	}
+	
+	public int getSellValue() {
+		return sellValue;
 	}
 }
