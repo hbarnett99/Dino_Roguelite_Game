@@ -5,9 +5,6 @@ import edu.monash.fit2099.engine.Location;
 
 import java.util.ArrayList;
 
-import edu.monash.fit2099.engine.GameMap;
-
-
 public class Tree extends Ground {
 	private int age = 0;
 	private ArrayList<Location> locations = new ArrayList<>();
@@ -22,38 +19,58 @@ public class Tree extends Ground {
 	public void tick(Location location) {
 		super.tick(location);
 
-		age++;
-		if (age == 10)
-			displayChar = 't';
-		if (age == 20)
-			displayChar = 'T';
+		//age++;
+		//if (age == 10)
+		//	displayChar = 't';
+		//if (age == 20)
+		//	displayChar = 'T';
 		
-	//	location.map().at(x, y);
+		//location.map().at(x, y)
 		
-		this.createTrees(Location location,  this.map);
+		
+		//location.equals(location.map().at(location.x()+1, location.y()));
+		
+		try {
+		
+		locations.add(location.map().at(location.x(), location.y()-1));//North
+		locations.add(location.map().at(location.x()+1, location.y()-1));//NorthEast
+		locations.add(location.map().at(location.x()+1, location.y()));//East
+		locations.add(location.map().at(location.x()+1, location.y()+1));//SouthEast
+		locations.add(location.map().at(location.x(), location.y()+1));//South
+		locations.add(location.map().at(location.x()-1, location.y()+1));//SouthWest
+		locations.add(location.map().at(location.x()-1, location.y()));//West
+		locations.add(location.map().at(location.x()-1, location.y()-1));//NorthWest
+		
+		for (int i = 0; i < 5; i++) {
+			if (locations.get(i).getGround().toString().contains("Dirt") || locations.get(i).getGround().toString().contains("Grass")) {
+				double random = Math.random();
+				if (random < 0.003) {
+					//System.out.println("Tree");
+					//System.out.println(locations.get(i).getGround());
+					locations.get(i).setGround(new Tree());
+					//System.out.println(locations.get(i).getGround());
+					
+				}
+			}
+		}
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("ERROR");
+			System.out.println(location.getGround());
+		}
+		
+		locations.clear();
+		
+		//location.map().at(x, y);
+		
+		//this.createTrees(location);
 	
 	}
-	public void createTrees(Location location, GameMap map) {
+	public void createTrees(Location location) {
 		
 		//double multiplier = Math.random();
 		//Location here = map.at(location.x(), location.y());
 		
-		locations.add(map.at(location.x(), location.y()-1));//North
-		locations.add(map.at(location.x()+1, location.y()-1));//NorthEast
-		locations.add(map.at(location.x()+1, location.y()));//East
-		locations.add(map.at(location.x()+1, location.y()+1));//SouthEast
-		locations.add(map.at(location.x(), location.y()+1));//South
-		locations.add(map.at(location.x()-1, location.y()+1));//SouthWest
-		locations.add(map.at(location.x()-1, location.y()));//West
-		locations.add(map.at(location.x()-1, location.y()-1));//NorthWest
-		
-		for (int i = 0; i < locations.size(); i++) {
-			if (locations.get(i).getGround().getDisplayChar() == '.') {
-				if (Math.random() < 0.9) {
-					locations.get(i).setGround(new Tree());
-				}
-			}
-		}		
+			
 		
 	}
 }
