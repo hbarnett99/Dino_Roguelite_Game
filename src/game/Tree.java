@@ -31,34 +31,44 @@ public class Tree extends Ground {
 		//location.equals(location.map().at(location.x()+1, location.y()));
 		
 		try {
-		
-		locations.add(location.map().at(location.x(), location.y()-1));//North
-		locations.add(location.map().at(location.x()+1, location.y()-1));//NorthEast
-		locations.add(location.map().at(location.x()+1, location.y()));//East
-		locations.add(location.map().at(location.x()+1, location.y()+1));//SouthEast
-		locations.add(location.map().at(location.x(), location.y()+1));//South
-		locations.add(location.map().at(location.x()-1, location.y()+1));//SouthWest
-		locations.add(location.map().at(location.x()-1, location.y()));//West
-		locations.add(location.map().at(location.x()-1, location.y()-1));//NorthWest
-		
-		for (int i = 0; i < 5; i++) {
-			if (locations.get(i).getGround().toString().contains("Dirt") || locations.get(i).getGround().toString().contains("Grass")) {
-				double random = Math.random();
-				if (random < 0.003) {
-					//System.out.println("Tree");
-					//System.out.println(locations.get(i).getGround());
-					locations.get(i).setGround(new Tree());
-					//System.out.println(locations.get(i).getGround());
-					
+		if (location.y() <= 22 && location.y() >=2 && location.x() >= 2 && location.x() <= 98) {
+			locations.add(location.map().at(location.x(), location.y()-1));//North
+			locations.add(location.map().at(location.x()+1, location.y()-1));//NorthEast
+			locations.add(location.map().at(location.x()+1, location.y()));//East
+			locations.add(location.map().at(location.x()+1, location.y()+1));//SouthEast
+			locations.add(location.map().at(location.x(), location.y()+1));//South
+			locations.add(location.map().at(location.x()-1, location.y()+1));//SouthWest
+			locations.add(location.map().at(location.x()-1, location.y()));//West
+			locations.add(location.map().at(location.x()-1, location.y()-1));//NorthWest
+			
+			//randomly grows grass
+			for (int i = 0; i < locations.size(); i++) {
+				if (locations.get(i).getGround().toString().contains("Dirt") || locations.get(i).getGround().toString().contains("Grass")) {
+					double random = Math.random();
+					if (random < 0.005) {
+						//System.out.println("Tree");
+						System.out.println(locations.get(i).getGround());
+						locations.get(i).setGround(new Tree());
+						System.out.println(locations.get(i).getGround());
+						
+					}
 				}
 			}
+			
+			for (int i = 0; i < locations.size(); i++) {
+				locations.remove(i);
+			}
+			locations.clear();
 		}
+		
+		//error handling
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("ERROR");
 			System.out.println(location.getGround());
+			System.out.println(location.getDisplayChar());
+			System.out.println(location.y());
 		}
 		
-		locations.clear();
 		
 		//location.map().at(x, y);
 		
