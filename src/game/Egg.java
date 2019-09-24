@@ -8,15 +8,10 @@ public class Egg extends Food{
 	private int age = 0;
 	private int sellValue = 10;
 	private DinosaurType dinoType;
-	private int foodValue;
 	
 	public Egg(String name, DinosaurType initType) {
 		super(name, 'e', FoodType.MEAT, 10);
 		dinoType = initType;
-	}
-	
-	public int getFoodValue() {
-		return foodValue;
 	}
 	
 	@Override
