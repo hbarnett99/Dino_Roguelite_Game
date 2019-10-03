@@ -7,7 +7,7 @@ public class Corpse extends Food {
 	private int sellValue = 15;
 
 	public Corpse(String name) {
-		super(name, 'c', FoodType.MEAT, 50);
+		super(name, 'c', FoodType.MEAT, 50, 15);
 		// TODO Auto-generated constructor stub
 	}
 	
