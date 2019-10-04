@@ -37,7 +37,11 @@ public class FollowBehaviour implements Behaviour {
 				}
 			}
 		}
-
+		NumberRange xs, ys;
+		if (here.x() == there.x() || here.y() == there.y()) {
+			xs = new NumberRange(Math.min(here.x(), there.x()), Math.abs(here.x() - there.x()) + 1);
+			ys = new NumberRange(Math.min(here.y(), there.y()), Math.abs(here.y() - there.y()) + 1);
+		}
 		return null;
 	}
 

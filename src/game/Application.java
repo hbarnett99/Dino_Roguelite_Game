@@ -61,6 +61,7 @@ public class Application {
 		
 		//adds Velociraptors 
 		Velociraptor veloc1 = new Velociraptor("Velociraptor");
+		veloc1.actionFactories.add(new HuntBehaviour(proto1));
 		veloc1.actionFactories.add(new FollowBehaviour(proto1));
 		gameMap.at(25, 20).addActor(veloc1);
 		//gameMap.at(10, 15).addActor(new Velociraptor("Velociraptor"));	
