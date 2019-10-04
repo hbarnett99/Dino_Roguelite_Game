@@ -15,6 +15,7 @@ public class TagDino extends Action {
 		String executePrint = "";
 		Actor dino = dinoFinder(player, map);
 		
+		//Checks what type of dino is being tagged
 		if (dino.toString().equals("Protoceratops")){
 			dinoValue = 100;
 			dinoName = "Protoceratops";
@@ -27,6 +28,7 @@ public class TagDino extends Action {
 			System.out.println("Cannot tag that actor.");
 		}
 		
+		//Removes dino from game, and adds money to players wallet, and prints nice message
 		map.removeActor(dino);
 		((Player)player).addToWallet(dinoValue);
 		executePrint = dinoName + " tagged and sold for " + Player.moneyFormat(dinoValue);
@@ -38,6 +40,10 @@ public class TagDino extends Action {
 		return "Tag dinosaur";
 	}
 	
+	
+	/*
+	 * @return adjacent actor (dino) found in Player class
+	 */
 	private Actor dinoFinder(Actor player, GameMap map) {
 		Actor actorToReturn;
 		

@@ -1,7 +1,6 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
-import java.util.ArrayList;
 
 /**
  * Class representing the Player.
@@ -105,6 +104,9 @@ public class Player extends Actor {
 		return haveTag;
 	}
 	
+	/*
+	 * @return true if a dino is next to the player
+	 */
 	private boolean dinoAdjacent(GameMap map) {
 		boolean isAdjacent = false;
 		
@@ -115,8 +117,7 @@ public class Player extends Actor {
 		{
 			isAdjacent = true;
 		}
-		
-		System.out.println(isAdjacent + "isAdjacent");
+
 		return isAdjacent;
 	}
 
