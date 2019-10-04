@@ -7,7 +7,7 @@ public class HerbivoreFood extends Food {
 	*/
 
 	public HerbivoreFood() {
-		super("Herbivore Food", 'h', FoodType.PLANT, 50, 20);
+		super("Herbivore Food", 'h', FoodType.PLANT, 50, 20, 20);
 		addSkill(SkillCollection.HERBIVORE_FOOD);
 		// TODO Auto-generated constructor stub
 	}

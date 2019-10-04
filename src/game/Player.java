@@ -33,6 +33,7 @@ public class Player extends Actor {
 			return lastAction.getNextAction();
 		
 		if (map.locationOf(this).getGround().hasSkill(SkillCollection.SHOP)){
+			actions.add(new BuyAction());
 			actions.add(new SellAction());
 		}
 		
