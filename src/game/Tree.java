@@ -11,7 +11,7 @@ public class Tree extends Ground {
 	
 	public Tree() {
 		super('+');
-		this.addSkill(EnumCollection.EDIBLE);
+		//this.addSkill(EnumCollection.EDIBLE);
 	}
 	
 	

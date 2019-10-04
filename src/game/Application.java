@@ -21,6 +21,7 @@ public class Application {
 
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Tree(), new Shop());
 		
+		
 		List<String> map = Arrays.asList(
 		"................................................................................",
 		"................................................................................",
@@ -54,9 +55,16 @@ public class Application {
 		world.addPlayer(player, gameMap.at(9, 4));
 		
 		// Place a pair of protoceratops in the middle of the map
-		gameMap.at(30, 12).addActor(new Protoceratops("Protoceratops"));
-		gameMap.at(32, 12).addActor(new Protoceratops("Protoceratops"));		
-			
+		Protoceratops proto1 = new Protoceratops("Protoceratops");
+		gameMap.at(40, 5).addActor(proto1);
+		gameMap.at(32, 12).addActor(new Protoceratops("Protoceratops"));
+		//adds Velociraptors 
+		Velociraptor veloc1 = new Velociraptor("Velociraptor");
+		veloc1.actionFactories.add(new FollowBehaviour(proto1));
+		gameMap.at(25, 20).addActor(veloc1);
+		//gameMap.at(10, 15).addActor(new Velociraptor("Velociraptor"));	
+		
+		
 		world.run();
 	}
 }

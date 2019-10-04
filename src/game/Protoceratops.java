@@ -1,8 +1,6 @@
 package game;
 
 
-import java.util.Map;
-
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
@@ -28,9 +26,9 @@ public class Protoceratops extends Actor {
 	public Protoceratops(String name) {
 		super(name, 'd', 100);
 		
-		behaviour = new WanderBehaviour();
-		behaviour = new SeekBehaviour(this,map);
+		//behaviour = new WanderBehaviour();
 		
+		behaviour = new SeekBehaviour("Tree");
 	}
 
 	@Override
@@ -38,7 +36,6 @@ public class Protoceratops extends Actor {
 		return new Actions(new AttackAction(this));
 	}
 
-	
 	/**
 	 * Figure out what to do next.
 	 * 
@@ -54,9 +51,6 @@ public class Protoceratops extends Actor {
 			return wander;
 		
 		return new DoNothingAction();
-	}
-	public void setBehaviour(Behaviour newBehaviour) {
-		
 	}
 
 }
