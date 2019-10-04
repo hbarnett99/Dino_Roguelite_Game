@@ -9,9 +9,10 @@ public class Egg extends Food{
 	private int sellValue = 10;
 	private DinosaurType dinoType;
 	
-	public Egg(String name, DinosaurType initType) {
-		super(name, 'e', FoodType.MEAT, 10);
+	public Egg(DinosaurType initType) {
+		super("Egg", 'e', FoodType.MEAT, 10, 10);
 		dinoType = initType;
+		super.name = nameEgg(initType);
 	}
 	
 	@Override
@@ -31,6 +32,19 @@ public class Egg extends Food{
 			//location.addActor(new Velociraptor("Velociraptor"));
 		}
 		location.removeItem(this);
+	}
+	
+	private String nameEgg(DinosaurType type) {
+		String newName = "";
+		
+		if(type == DinosaurType.PROTOCERATOPS) {
+			newName = "Protoceratops Egg";
+		}
+		else if(type == DinosaurType.VELOCIRAPTOR) {
+			newName = "Velociraptor Egg";
+		}
+		
+		return newName;
 	}
 	
 	public int getSellValue() {
