@@ -3,28 +3,46 @@ package game;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.MoveActorAction;
-import edu.monash.fit2099.engine.NumberRange;
+import edu.monash.fit2099.engine.ActorLocations;
+import edu.monash.fit2099.engine.Exit;
+import edu.monash.fit2099.engine.World;
 
 public class HuntBehaviour extends Action implements Behaviour {
 	private Actor target;
+	GameMap map;
+	;
 	
-	public HuntBehaviour(Actor subject) {
-		this.target = subject;
+	public HuntBehaviour() {
+		
 	}
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
 		Location here = map.locationOf(actor);
-		Location there = map.locationOf(target);
-
 		
-		if (distance(here,there) < 2) {
-			
-			return this;
+	
+		for (int i = 0; i < map.getXRange().max(); i++) {
+			for (int k = 0; k < map.getYRange().max(); k++) {
+				if (map.isAnActorAt(map.at(i, k))) {
+					target = map.getActorAt(map.at(i, k));
+				}
+				
+			}
+
+		}
+		Location there = map.locationOf(target);
+		int currentDistance = distance(here, there);
+		for (Exit exit : here.getExits()) {
+			Location destination = exit.getDestination();
+			if (destination.canActorEnter(actor)) {
+				int newDistance = distance(destination, there);
+				if (newDistance < currentDistance) {
+					return new MoveActorAction(destination, exit.getName());
+				}
+			}
 		}
 		return null;
 	}

@@ -1,7 +1,7 @@
 package game;
 
 import java.util.ArrayList;
-
+import java.util.Random;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Exit;
@@ -30,56 +30,21 @@ public class SeekBehaviour implements Behaviour {
 		return null;
 		
 		Location here = map.locationOf(actor);
-		
-		
-		
+		boolean found = false;
+		outerloop:
+		while(found == false) {
+			for (int i = 0; i < map.getXRange().max(); i++) {
+				for (int k = 0; k < map.getYRange().max(); k++) {
+					if (map.at(i, k).getGround().toString().contains(food)) {
+						target = map.at(i,k);
+						break outerloop;
+					}
 					
-		for (int i = 0; i < here.getExits().size(); i++) {
-			
-			if(here.getExits().get(i).getDestination().getGround().toString().contains(food)){
-				target = here;
+				}
+	
 			}
-			//checks circle south east
-			else if(here.map().at(here.x()+5, here.y()+5).getExits().get(i).getDestination().getGround().toString().contains(food)){
-				target = here.map().at(here.x()+5, here.y()+5);
-				
-			}
-			//south
-			else if(here.map().at(here.x(), here.y()+5).getExits().get(i).getDestination().getGround().toString().contains(food)){
-				target = here.map().at(here.x(), here.y()+5);
-			}
-			//checks south west
-			else if(here.map().at(here.x()-5, here.y()+5).getExits().get(i).getDestination().getGround().toString().contains(food)){
-				target = here.map().at(here.x()-5, here.y()+5);
-				
-			}
-			//west
-			else if(here.map().at(here.x()-5, here.y()).getExits().get(i).getDestination().getGround().toString().contains(food)){
-				target = here.map().at(here.x()-5, here.y());
-			}
-			//NW
-			else if(here.map().at(here.x()-5, here.y()-5).getExits().get(i).getDestination().getGround().toString().contains(food)){
-				target = here.map().at(here.x()-5, here.y()-5);
-				
-			}
-			//North
-			else if(here.map().at(here.x(), here.y()-5).getExits().get(i).getDestination().getGround().toString().contains(food)){
-				target = here.map().at(here.x(), here.y()-5);
-			}
-			//NE
-			else if(here.map().at(here.x()+5, here.y()-5).getExits().get(i).getDestination().getGround().toString().contains(food)){
-				target = here.map().at(here.x()+5, here.y()-5);
-				
-			}
-			else if(here.map().at(here.x()+5, here.y()).getExits().get(i).getDestination().getGround().toString().contains(food)){
-				target = here.map().at(here.x()+5, here.y());
-			}
-			else {
-				target = here.map().at(here.x()+ThreadLocalRandom.current().nextInt(-5, 5 + 1),here.y()+ThreadLocalRandom.current().nextInt(-5, 5 + 1));			
-			}
-		}
-					
-				
+		}		
+		
 		int currentDistance = distance(here, target);
 		for (Exit exit : here.getExits()) {
 			Location destination = exit.getDestination();
@@ -90,6 +55,7 @@ public class SeekBehaviour implements Behaviour {
 				}
 			}
 		}
+	
 		return null;
 	}
 	/**
