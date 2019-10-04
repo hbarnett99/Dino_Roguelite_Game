@@ -11,6 +11,4 @@ import game.Player;
  */
 public interface ActionInterface {
 
-	String execute(Player player, Actor dino, ActorLocations dinoLocation, GameMap map);
-
 }
