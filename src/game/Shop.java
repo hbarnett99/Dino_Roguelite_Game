@@ -19,7 +19,7 @@ public class Shop extends Ground{
 	}
 	
 	public void sellToShop(PortableDinoItem itemToSell, Player player) {
-		player.addToWallet(itemToSell.getItemValue());
+	//	player.addToWallet(itemToSell.getItemValue());
 		player.removeItemFromInventory(itemToSell);
 	}
 }

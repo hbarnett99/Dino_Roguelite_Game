@@ -9,54 +9,18 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.MoveActorAction;
 import edu.monash.fit2099.engine.Location;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class SeekBehaviour implements Behaviour {
 
 	private Location target = null;
 	
 	
-	public SeekBehaviour(Actor actor,GameMap map) {
+	public SeekBehaviour() {
 		//
 		//FIND CLOSEST TREE
 		//		
-		
-		Location here = map.locationOf(actor);
 			
-		
-		while (target == null) {
-			
-			for (int i = 0; i < here.getExits().size(); i++) {
-				if(here.getExits().get(i).getDestination().getGround().toString().contains("Tree")){
-					target = here;
-				}
-				//checks circle south east
-				else if(here.map().at(here.x()+5, here.y()+5).getGround().toString().contains("Tree")){
-					target = here;
-					
-				}
-				//checks south west
-				else if(here.map().at(here.x()-5, here.y()+5).getGround().toString().contains("Tree")){
-					target = here;
-					
-				}
-				//NW
-				else if(here.map().at(here.x()-5, here.y()-5).getGround().toString().contains("Tree")){
-					target = here;
-					
-				}
-				//NE
-				else if(here.map().at(here.x()+5, here.y()-5).getGround().toString().contains("Tree")){
-					target = here;
-					
-				}
-				else {
-					actor.;
-				}
-			}
-			
-		}
-		
-		
 		//this.target = subject;
 	}
 
@@ -67,6 +31,55 @@ public class SeekBehaviour implements Behaviour {
 		
 		Location here = map.locationOf(actor);
 		
+		//finds a tree
+		
+					
+		for (int i = 0; i < here.getExits().size(); i++) {
+			
+			if(here.getExits().get(i).getDestination().getGround().toString().contains("Tree")){
+				target = here;
+			}
+			//checks circle south east
+			else if(here.map().at(here.x()+5, here.y()+5).getExits().get(i).getDestination().getGround().toString().contains("Tree")){
+				target = here.map().at(here.x()+5, here.y()+5);
+				
+			}
+			//south
+			else if(here.map().at(here.x(), here.y()+5).getExits().get(i).getDestination().getGround().toString().contains("Tree")){
+				target = here.map().at(here.x(), here.y()+5);
+			}
+			//checks south west
+			else if(here.map().at(here.x()-5, here.y()+5).getExits().get(i).getDestination().getGround().toString().contains("Tree")){
+				target = here.map().at(here.x()-5, here.y()+5);
+				
+			}
+			//west
+			else if(here.map().at(here.x()-5, here.y()).getExits().get(i).getDestination().getGround().toString().contains("Tree")){
+				target = here.map().at(here.x()-5, here.y());
+			}
+			//NW
+			else if(here.map().at(here.x()-5, here.y()-5).getExits().get(i).getDestination().getGround().toString().contains("Tree")){
+				target = here.map().at(here.x()-5, here.y()-5);
+				
+			}
+			//North
+			else if(here.map().at(here.x(), here.y()-5).getExits().get(i).getDestination().getGround().toString().contains("Tree")){
+				target = here.map().at(here.x(), here.y()-5);
+			}
+			//NE
+			else if(here.map().at(here.x()+5, here.y()-5).getExits().get(i).getDestination().getGround().toString().contains("Tree")){
+				target = here.map().at(here.x()+5, here.y()-5);
+				
+			}
+			else if(here.map().at(here.x()+5, here.y()).getExits().get(i).getDestination().getGround().toString().contains("Tree")){
+				target = here.map().at(here.x()+5, here.y());
+			}
+			else {
+				target = here.map().at(here.x()+ThreadLocalRandom.current().nextInt(-5, 5 + 1),here.y()+ThreadLocalRandom.current().nextInt(-5, 5 + 1));			
+			}
+		}
+					
+				
 		int currentDistance = distance(here, target);
 		for (Exit exit : here.getExits()) {
 			Location destination = exit.getDestination();
