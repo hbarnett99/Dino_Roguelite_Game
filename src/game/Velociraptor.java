@@ -9,7 +9,6 @@ import game.Behaviour;
 
 public class Velociraptor extends Actor {
 
-	private Behaviour behaviour;	
 	GameMap map;
 	public List<Behaviour> actionFactories = new ArrayList<Behaviour>();
 	private Random rand = new Random();
@@ -43,9 +42,10 @@ public class Velociraptor extends Actor {
 			Action action = factory.getAction(this, map);
 			if(action != null)
 				return action;
+			
 		}
 		
-		return actions.get(rand.nextInt(actions.size()));
+		return new DoNothingAction();
 
 	}
 }
