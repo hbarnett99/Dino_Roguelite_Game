@@ -1,5 +1,9 @@
 package game;
 
+/*
+ * Enum collection for skills to allow for actions
+ */
+
 public enum SkillCollection {
 	SHOP,
 	HERBIVORE_FOOD,

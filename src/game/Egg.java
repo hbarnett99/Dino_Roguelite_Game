@@ -1,6 +1,10 @@
 package game;
 import edu.monash.fit2099.engine.*;
 
+/*
+ * An egg to be made that can be sold, bought, bred and hatched
+ */
+
 public class Egg extends Food{
 	
 	protected enum DinosaurType {PROTOCERATOPS, VELOCIRAPTOR}
@@ -23,6 +27,7 @@ public class Egg extends Food{
 		System.out.println("age = " + age);
 	}
 	
+	//Hatches the egg if left for 30 turns
 	private void hatch(Location location) {
 		if (dinoType == DinosaurType.PROTOCERATOPS) {
 			location.addActor(new Protoceratops("Protoceratops"));
@@ -33,6 +38,7 @@ public class Egg extends Food{
 		location.removeItem(this);
 	}
 	
+	//Changes the egg's variables depending on the DinosaurType given.
 	private String eggVariant(DinosaurType type) {
 		String newName = "";
 		

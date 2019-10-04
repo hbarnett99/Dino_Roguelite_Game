@@ -2,6 +2,10 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+/*
+ * Action to allow player to sell live dinosaurs
+ */
+
 public class TagDino extends Action {
 
 	public TagDino() {

@@ -2,9 +2,9 @@ package game;
 
 public class HerbivoreFood extends Food {
 	
-	/*Super order is:
-	  (Name of the item, Character of the item, enum of the food type, food value, cost of the item)  
-	*/
+/*
+ * Food to be bought and given to Protoceratops to be eaten
+ */
 
 	public HerbivoreFood() {
 		super("Herbivore Food", 'h', FoodType.PLANT, 50, 20, 20);
