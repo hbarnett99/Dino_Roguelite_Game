@@ -1,5 +1,10 @@
 package game;
 
+/**
+ * Carnivore Food object for Velociraptors to eat.
+ *
+ */
+
 public class CarnivoreFood extends Food {
 	
 	/*Super order is:

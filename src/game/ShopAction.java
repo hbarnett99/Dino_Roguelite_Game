@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import edu.monash.fit2099.engine.*;
 
+/*
+ * Abstract clas to SellAction and BuyAction. Gives an itemCaster method and an input selector
+ */
+
 public abstract class ShopAction extends Action {
 
 	public ShopAction() {
@@ -22,6 +26,7 @@ public abstract class ShopAction extends Action {
 		return null;
 	}
 	
+	//Casts an item into a portableDinoItem
 	protected PortableDinoItem itemCaster(Item itemToCast) {
 		return (PortableDinoItem) itemToCast;
 	}

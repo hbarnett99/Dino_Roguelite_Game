@@ -1,9 +1,8 @@
 package game;
 
-
-/*Super order is:
-	(Name of the item, Character of the item, Portability)  
-	*/
+/*
+ * a class to give the user the skill to tag dinos
+ */
 
 public class DinoTag extends PortableDinoItem {
 

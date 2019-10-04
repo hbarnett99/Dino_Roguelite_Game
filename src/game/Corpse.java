@@ -2,6 +2,11 @@ package game;
 
 import edu.monash.fit2099.engine.Location;
 
+/**
+ * An item to replace dead dinos.
+ *
+ */
+
 public class Corpse extends Food {
 	
 	private int sellValue = 15;

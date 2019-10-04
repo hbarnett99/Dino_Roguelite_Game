@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import edu.monash.fit2099.engine.*;
 import game.Egg.DinosaurType;
 
+/**
+ * Action that allows purchasing at the shop.
+ *
+ */
 
 public class BuyAction extends ShopAction {
 	
