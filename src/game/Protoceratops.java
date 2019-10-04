@@ -15,7 +15,7 @@ import edu.monash.fit2099.engine.GameMap;
 public class Protoceratops extends Actor {
 	// Will need to change this to a collection if Protoceratops gets additional Behaviours.
 	private Behaviour behaviour;
-
+	int hitPoints = 5;
 	GameMap map;
 	/** 
 	 * Constructor.

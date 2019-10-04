@@ -22,9 +22,8 @@ public class Tree extends Ground {
 
 		age++;
 		if (age == 10)
-			displayChar = 't';
-		if (age == 20)
-			displayChar = 'T';
+			displayChar = '+';
+		
 		
 		//location.map().at(x, y) 
 		

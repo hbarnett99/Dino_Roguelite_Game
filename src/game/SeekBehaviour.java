@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.MoveActorAction;
 import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.Ground;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class SeekBehaviour implements Behaviour {
@@ -30,9 +31,8 @@ public class SeekBehaviour implements Behaviour {
 		return null;
 		
 		Location here = map.locationOf(actor);
-		boolean found = false;
+		
 		outerloop:
-		while(found == false) {
 			for (int i = 0; i < map.getXRange().max(); i++) {
 				for (int k = 0; k < map.getYRange().max(); k++) {
 					if (map.at(i, k).getGround().toString().contains(food)) {
@@ -42,8 +42,7 @@ public class SeekBehaviour implements Behaviour {
 					
 				}
 	
-			}
-		}		
+			}		
 		
 		int currentDistance = distance(here, target);
 		for (Exit exit : here.getExits()) {
@@ -54,6 +53,10 @@ public class SeekBehaviour implements Behaviour {
 					return new MoveActorAction(destination, exit.getName());
 				}
 			}
+		}
+		if (currentDistance == 0) {
+			actor.heal(5);
+			here.setGround(new Dirt());
 		}
 	
 		return null;

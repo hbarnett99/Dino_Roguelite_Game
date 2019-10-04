@@ -55,9 +55,10 @@ public class Application {
 		
 		//adds Velociraptors 
 		Velociraptor veloc1 = new Velociraptor("Velociraptor");
-		gameMap.at(25, 20).addActor(veloc1);
+		gameMap.at(32, 11).addActor(veloc1);
 		veloc1.actionFactories.add(new HuntBehaviour());
-		veloc1.actionFactories.add(new WanderBehaviour());
+		//veloc1.actionFactories.add(new WanderBehaviour());
+		veloc1.actionFactories.add(new EatBehaviour());
 		//gameMap.at(10, 15).addActor(new Velociraptor("Velociraptor"));	
 		
 		//adds an egg

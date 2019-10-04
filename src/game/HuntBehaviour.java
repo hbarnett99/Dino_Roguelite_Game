@@ -14,7 +14,6 @@ import edu.monash.fit2099.engine.World;
 public class HuntBehaviour extends Action implements Behaviour {
 	private Actor target;
 	GameMap map;
-	;
 	
 	public HuntBehaviour() {
 		
@@ -23,11 +22,15 @@ public class HuntBehaviour extends Action implements Behaviour {
 	public Action getAction(Actor actor, GameMap map) {
 		Location here = map.locationOf(actor);
 		
-	
+	outerloop:
 		for (int i = 0; i < map.getXRange().max(); i++) {
 			for (int k = 0; k < map.getYRange().max(); k++) {
 				if (map.isAnActorAt(map.at(i, k))) {
-					target = map.getActorAt(map.at(i, k));
+					if (map.at(i, k).getActor().toString().contains("Proto")) {
+						target = map.getActorAt(map.at(i, k));
+						break outerloop;
+					}
+					
 				}
 				
 			}
@@ -41,6 +44,7 @@ public class HuntBehaviour extends Action implements Behaviour {
 				int newDistance = distance(destination, there);
 				if (newDistance < currentDistance) {
 					return new MoveActorAction(destination, exit.getName());
+					
 				}
 			}
 		}

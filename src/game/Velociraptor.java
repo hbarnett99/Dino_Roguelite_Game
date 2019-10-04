@@ -11,6 +11,7 @@ public class Velociraptor extends Actor {
 
 	GameMap map;
 	public List<Behaviour> actionFactories = new ArrayList<Behaviour>();
+	private Behaviour behaviour;
 	private Random rand = new Random();
 	//find a protoceratops
 	
@@ -18,14 +19,14 @@ public class Velociraptor extends Actor {
 	public Velociraptor(String name) {
 		super(name, 'v', 100);
 		
-		
+		this.behaviour = new EatBehaviour();
 		
 	}
 	
 	
 	@Override
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
-		return new Actions(new AttackAction(this));
+		return new Actions(new EatAction(this));
 	}
 
 	/**
@@ -42,6 +43,7 @@ public class Velociraptor extends Actor {
 			Action action = factory.getAction(this, map);
 			if(action != null)
 				return action;
+			
 			
 		}
 		
