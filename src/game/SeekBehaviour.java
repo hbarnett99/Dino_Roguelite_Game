@@ -14,13 +14,13 @@ import java.util.concurrent.ThreadLocalRandom;
 public class SeekBehaviour implements Behaviour {
 
 	private Location target = null;
+	private String food;
 	
-	
-	public SeekBehaviour() {
+	public SeekBehaviour(String foodSource) {
 		//
 		//FIND CLOSEST TREE
 		//		
-			
+		food = foodSource;
 		//this.target = subject;
 	}
 
@@ -31,47 +31,47 @@ public class SeekBehaviour implements Behaviour {
 		
 		Location here = map.locationOf(actor);
 		
-		//finds a tree
+		
 		
 					
 		for (int i = 0; i < here.getExits().size(); i++) {
 			
-			if(here.getExits().get(i).getDestination().getGround().toString().contains("Tree")){
+			if(here.getExits().get(i).getDestination().getGround().toString().contains(food)){
 				target = here;
 			}
 			//checks circle south east
-			else if(here.map().at(here.x()+5, here.y()+5).getExits().get(i).getDestination().getGround().toString().contains("Tree")){
+			else if(here.map().at(here.x()+5, here.y()+5).getExits().get(i).getDestination().getGround().toString().contains(food)){
 				target = here.map().at(here.x()+5, here.y()+5);
 				
 			}
 			//south
-			else if(here.map().at(here.x(), here.y()+5).getExits().get(i).getDestination().getGround().toString().contains("Tree")){
+			else if(here.map().at(here.x(), here.y()+5).getExits().get(i).getDestination().getGround().toString().contains(food)){
 				target = here.map().at(here.x(), here.y()+5);
 			}
 			//checks south west
-			else if(here.map().at(here.x()-5, here.y()+5).getExits().get(i).getDestination().getGround().toString().contains("Tree")){
+			else if(here.map().at(here.x()-5, here.y()+5).getExits().get(i).getDestination().getGround().toString().contains(food)){
 				target = here.map().at(here.x()-5, here.y()+5);
 				
 			}
 			//west
-			else if(here.map().at(here.x()-5, here.y()).getExits().get(i).getDestination().getGround().toString().contains("Tree")){
+			else if(here.map().at(here.x()-5, here.y()).getExits().get(i).getDestination().getGround().toString().contains(food)){
 				target = here.map().at(here.x()-5, here.y());
 			}
 			//NW
-			else if(here.map().at(here.x()-5, here.y()-5).getExits().get(i).getDestination().getGround().toString().contains("Tree")){
+			else if(here.map().at(here.x()-5, here.y()-5).getExits().get(i).getDestination().getGround().toString().contains(food)){
 				target = here.map().at(here.x()-5, here.y()-5);
 				
 			}
 			//North
-			else if(here.map().at(here.x(), here.y()-5).getExits().get(i).getDestination().getGround().toString().contains("Tree")){
+			else if(here.map().at(here.x(), here.y()-5).getExits().get(i).getDestination().getGround().toString().contains(food)){
 				target = here.map().at(here.x(), here.y()-5);
 			}
 			//NE
-			else if(here.map().at(here.x()+5, here.y()-5).getExits().get(i).getDestination().getGround().toString().contains("Tree")){
+			else if(here.map().at(here.x()+5, here.y()-5).getExits().get(i).getDestination().getGround().toString().contains(food)){
 				target = here.map().at(here.x()+5, here.y()-5);
 				
 			}
-			else if(here.map().at(here.x()+5, here.y()).getExits().get(i).getDestination().getGround().toString().contains("Tree")){
+			else if(here.map().at(here.x()+5, here.y()).getExits().get(i).getDestination().getGround().toString().contains(food)){
 				target = here.map().at(here.x()+5, here.y());
 			}
 			else {
