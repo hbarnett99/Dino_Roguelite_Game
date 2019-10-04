@@ -16,7 +16,6 @@ public abstract class Food extends PortableDinoItem {
         super(name, displayChar, initItemValue);
         foodType = initFoodType;
         foodValue = initFoodValue;
-        // TODO Auto-generated constructor stub
     }
     
     /*
