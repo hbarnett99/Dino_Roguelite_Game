@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.World;
+import game.Egg.DinosaurType;
 
 /**
  * The main class for the dinosaur park game.
@@ -60,7 +61,6 @@ public class Application {
 		
 		//adds Velociraptors 
 		Velociraptor veloc1 = new Velociraptor("Velociraptor");
-<<<<<<< HEAD
 		veloc1.actionFactories.add(new HuntBehaviour());
 		veloc1.actionFactories.add(new WanderBehaviour());
 		gameMap.at(30, 12).addActor(veloc1);
@@ -69,12 +69,6 @@ public class Application {
 		//adds an egg
 		gameMap.at(8, 14).addItem(new Egg(DinosaurType.PROTOCERATOPS));
 		
-=======
-		veloc1.actionFactories.add(new HuntBehaviour(proto1));
-		veloc1.actionFactories.add(new FollowBehaviour(proto1));
-		gameMap.at(25, 20).addActor(veloc1);
-		//gameMap.at(10, 15).addActor(new Velociraptor("Velociraptor"));
->>>>>>> 9c0b24fb97dcea169c814aa97a6dba0c48f4f37d
 		
 		world.run();
 	}
