@@ -20,13 +20,13 @@ public class Tree extends Ground {
 	public void tick(Location location) {
 		super.tick(location);
 
-		//age++;
-		//if (age == 10)
-		//	displayChar = 't';
-		//if (age == 20)
-		//	displayChar = 'T';
+		age++;
+		if (age == 10)
+			displayChar = 't';
+		if (age == 20)
+			displayChar = 'T';
 		
-		//location.map().at(x, y)
+		//location.map().at(x, y) 
 		
 		
 		//location.equals(location.map().at(location.x()+1, location.y()));

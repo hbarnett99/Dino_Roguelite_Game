@@ -1,7 +1,6 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
-import java.util.ArrayList;
 
 /**
  * Class representing the Player.
@@ -9,7 +8,6 @@ import java.util.ArrayList;
 public class Player extends Actor {
 
 	private Menu menu = new Menu();
-	public ArrayList<Item> inventory = new ArrayList<>();
 	private int wallet = 0;
 
 	/**
@@ -32,12 +30,18 @@ public class Player extends Actor {
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 		
+		//Checks to see if the player is in the shop
 		if (map.locationOf(this).getGround().hasSkill(SkillCollection.SHOP)){
+			actions.add(new BuyAction());
 			actions.add(new SellAction());
 		}
 		
-		return menu.showMenu(this, actions, display);
+		//Checks to see if a dino can be tagged
+		if (checkForTag() && dinoAdjacent(map)) {
+			actions.add(new TagDino());
+		}
 		
+		return menu.showMenu(this, actions, display);
 	}
 	
 	/*
@@ -74,12 +78,47 @@ public class Player extends Actor {
 		return moneyFormat(wallet);
 	}
 	
+	/*
+	 * @return moneyString	a String formatted for currency. Static so other classes with no reference can use it
+	 */
 	public static String moneyFormat(int value) {
 		String moneyString = "";
 		
 		moneyString += "$" + String.format("%.2f", (double) value);
 		
 		return moneyString;
+	}
+	
+	/*
+	 * @return haveTag 	A boolean to check if the player has a DinoTag in their inventory 
+	 */
+	private boolean checkForTag() {
+		boolean haveTag = false;
+		int checkBags = 0;
+		while (this.getInventory().size() > checkBags) {
+			if (this.getInventory().get(checkBags).hasSkill(SkillCollection.DINO_TAG)) {
+				haveTag = true;
+			}
+			checkBags++;
+		}
+		return haveTag;
+	}
+	
+	/*
+	 * @return true if a dino is next to the player
+	 */
+	private boolean dinoAdjacent(GameMap map) {
+		boolean isAdjacent = false;
+		
+		if (map.isAnActorAt(map.at(map.locationOf(this).x()+1, map.locationOf(this).y())) ||
+			map.isAnActorAt(map.at(map.locationOf(this).x()-1, map.locationOf(this).y())) ||
+			map.isAnActorAt(map.at(map.locationOf(this).x(), map.locationOf(this).y()+1)) ||
+			map.isAnActorAt(map.at(map.locationOf(this).x(), map.locationOf(this).y()-1)))
+		{
+			isAdjacent = true;
+		}
+
+		return isAdjacent;
 	}
 
 	

@@ -6,13 +6,12 @@ public class Egg extends Food{
 	protected enum DinosaurType {PROTOCERATOPS, VELOCIRAPTOR}
 	
 	private int age = 0;
-	private int sellValue = 10;
 	private DinosaurType dinoType;
 	
 	public Egg(DinosaurType initType) {
-		super("Egg", 'e', FoodType.MEAT, 10, 10);
+		super("Egg", 'e', FoodType.MEAT, 10, 10, 50);
 		dinoType = initType;
-		super.name = nameEgg(initType);
+		super.name = eggVariant(initType);
 	}
 	
 	@Override
@@ -29,25 +28,25 @@ public class Egg extends Food{
 			location.addActor(new Protoceratops("Protoceratops"));
 		} 
 		else if (dinoType == DinosaurType.VELOCIRAPTOR) {
-			//location.addActor(new Velociraptor("Velociraptor"));
+			location.addActor(new Velociraptor("Velociraptor"));
 		}
 		location.removeItem(this);
 	}
 	
-	private String nameEgg(DinosaurType type) {
+	private String eggVariant(DinosaurType type) {
 		String newName = "";
 		
 		if(type == DinosaurType.PROTOCERATOPS) {
 			newName = "Protoceratops Egg";
+			sellValue = 10;
+			buyValue = 50;
 		}
 		else if(type == DinosaurType.VELOCIRAPTOR) {
 			newName = "Velociraptor Egg";
+			sellValue = 200;
+			buyValue = 1000;
 		}
 		
 		return newName;
-	}
-	
-	public int getSellValue() {
-		return sellValue;
 	}
 }
