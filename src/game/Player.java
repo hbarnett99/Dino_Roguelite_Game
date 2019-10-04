@@ -28,8 +28,43 @@ public class Player extends Actor {
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
+		
+		if (map.locationOf(this).getGround().hasSkill(SkillCollection.SHOP)){
+			actions.add(new SellAction());
+		}
+		
 		return menu.showMenu(this, actions, display);
+		
 	}
+	
+	/*
+	 * Method that is used to add funds to players wallet when selling items 
+	*/
+	
+	public void addToWallet(int numToAdd) {
+		wallet += numToAdd;
+	}
+	
+	/*
+	 * Method that is used to take funds to players wallet when buying items
+	 * @returns a boolean to see if the player had enough money, if false, the transaction fails
+	*/
+	
+	public boolean takeFromWallet(int numToTake) {
+		boolean check = false;
+		if (wallet - numToTake >= 0) {
+			wallet -= numToTake;
+			check = true;
+		}
+		else {
+			System.out.println("Error: Not enough funds!");
+		}
+		return check;
+	}
+	
+	/*
+	 * @returns the amount of money player has in the form of a formatted String
+	*/
 	
 	public String displayWallet() {
 		String walletString = "";
@@ -39,4 +74,5 @@ public class Player extends Actor {
 		return walletString;
 	}
 
+	
 }
