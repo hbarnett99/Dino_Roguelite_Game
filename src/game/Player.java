@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class Player extends Actor {
 
 	private Menu menu = new Menu();
-	public ArrayList<Item> inventory = new ArrayList<>();
 	private int wallet = 0;
 
 	/**
@@ -35,6 +34,18 @@ public class Player extends Actor {
 		if (map.locationOf(this).getGround().hasSkill(SkillCollection.SHOP)){
 			actions.add(new BuyAction());
 			actions.add(new SellAction());
+		}
+		
+		boolean haveTag = false;
+		int checkBags = 0;
+		while (haveTag = false && this.getInventory().size() > checkBags) {
+			if (this.getInventory().get(checkBags).toString().equals("Dino Tag")) {
+				haveTag = true;
+			}
+		}
+		
+		if (haveTag) {
+			actions.add(new TagDino());
 		}
 		
 		return menu.showMenu(this, actions, display);
