@@ -67,8 +67,7 @@ public class Application {
 		//gameMap.at(10, 15).addActor(new Velociraptor("Velociraptor"));	
 		
 		//adds an egg
-		gameMap.at(8, 7).addItem(new Egg(DinosaurType.VELOCIRAPTOR));
-		
+		gameMap.at(8, 7).addActor(new Protoceratops("Protoceratops"));
 		
 		world.run();
 	}

@@ -10,5 +10,6 @@ public class DinoTag extends PortableDinoItem {
 
 	public DinoTag() {
 		super("Dino Tag", '!', 0, 0);
+		this.addSkill(SkillCollection.DINO_TAG);
 	}
 }
