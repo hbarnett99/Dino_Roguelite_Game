@@ -2,15 +2,16 @@ package game;
 
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
-
 import java.util.ArrayList;
 
 public class Tree extends Ground {
 	private int age = 0;
+	
 	private ArrayList<Location> locations = new ArrayList<>();
 	
 	public Tree() {
 		super('+');
+		this.addSkill(EnumCollection.EDIBLE);
 	}
 	
 	
@@ -30,8 +31,12 @@ public class Tree extends Ground {
 		
 		//location.equals(location.map().at(location.x()+1, location.y()));
 		
+		//
+		//Checks if the location is within bounds of map -1 to know if it can grow trees next to it
+		//
 		try {
-		if (location.y() <= 22 && location.y() >=2 && location.x() >= 2 && location.x() <= 98) {
+		//if (location.map().getYRange().contains(location.y()) && location.map().getYRange().contains(location.x())) {
+		if (location.y() <= location.map().getYRange().max()-1 && location.y() >=2 && location.x() >= 2 && location.x() <= location.map().getXRange().max()) {
 			locations.add(location.map().at(location.x(), location.y()-1));//North
 			locations.add(location.map().at(location.x()+1, location.y()-1));//NorthEast
 			locations.add(location.map().at(location.x()+1, location.y()));//East
@@ -47,9 +52,10 @@ public class Tree extends Ground {
 					double random = Math.random();
 					if (random < 0.005) {
 						//System.out.println("Tree");
-						System.out.println(locations.get(i).getGround());
+						//System.out.println(locations.get(i).getGround());
 						locations.get(i).setGround(new Tree());
-						System.out.println(locations.get(i).getGround());
+						
+						//System.out.println(locations.get(i).getGround());
 						
 					}
 				}
