@@ -23,6 +23,7 @@ public class HuntBehaviour extends Action implements Behaviour {
 		Location here = map.locationOf(actor);
 		
 	outerloop:
+		
 		for (int i = 0; i < map.getXRange().max(); i++) {
 			for (int k = 0; k < map.getYRange().max(); k++) {
 				if (map.isAnActorAt(map.at(i, k))) {
@@ -36,15 +37,17 @@ public class HuntBehaviour extends Action implements Behaviour {
 			}
 
 		}
-		Location there = map.locationOf(target);
-		int currentDistance = distance(here, there);
-		for (Exit exit : here.getExits()) {
-			Location destination = exit.getDestination();
-			if (destination.canActorEnter(actor)) {
-				int newDistance = distance(destination, there);
-				if (newDistance < currentDistance) {
-					return new MoveActorAction(destination, exit.getName());
-					
+		if(map.locationOf(target)!=null) {
+			Location there = map.locationOf(target);
+			int currentDistance = distance(here, there);
+			for (Exit exit : here.getExits()) {
+				Location destination = exit.getDestination();
+				if (destination.canActorEnter(actor)) {
+					int newDistance = distance(destination, there);
+					if (newDistance < currentDistance) {
+						return new MoveActorAction(destination, exit.getName());
+						
+					}
 				}
 			}
 		}

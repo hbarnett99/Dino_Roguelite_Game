@@ -31,9 +31,10 @@ public class EatBehaviour extends Action implements Behaviour {
 	Location here = map.locationOf(actor);
 	Location there = map.locationOf(target);
 
-	
-	if (distance(here ,there) <3) {
-		return new EatAction(target);
+	if(there !=null) {
+		if (distance(here ,there) <3) {
+			return new EatAction(target);
+		}
 	}
 	return null;
 	}
