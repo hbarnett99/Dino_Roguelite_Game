@@ -14,9 +14,9 @@ import edu.monash.fit2099.engine.World;
 public class HuntBehaviour extends Action implements Behaviour {
 	private Actor target;
 	GameMap map;
-	
-	public HuntBehaviour() {
-		
+	private String hunted = "";
+	public HuntBehaviour(String hunted) {
+		this.hunted = hunted;
 	}
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
@@ -27,7 +27,7 @@ public class HuntBehaviour extends Action implements Behaviour {
 		for (int i = 0; i < map.getXRange().max(); i++) {
 			for (int k = 0; k < map.getYRange().max(); k++) {
 				if (map.isAnActorAt(map.at(i, k))) {
-					if (map.at(i, k).getActor().toString().contains("Proto")) {
+					if (map.at(i, k).getActor().toString().contains(hunted)) {
 						target = map.getActorAt(map.at(i, k));
 						break outerloop;
 					}
