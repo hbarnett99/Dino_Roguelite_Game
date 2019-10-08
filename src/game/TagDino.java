@@ -35,6 +35,7 @@ public class TagDino extends Action {
 		//Removes dino from game, and adds money to players wallet, and prints nice message
 		map.removeActor(dino);
 		((Player)player).addToWallet(dinoValue);
+		removeTagInInventory(player);
 		executePrint = dinoName + " tagged and sold for " + Player.moneyFormat(dinoValue);
 		return executePrint;
 	}
@@ -68,6 +69,19 @@ public class TagDino extends Action {
 		}
 		
 		return actorToReturn;
+	}
+	
+	private void removeTagInInventory (Actor player) {
+		int numInArray = 0;
+		
+		for (int i = 0; i < player.getInventory().size(); i++) {
+			if (player.getInventory().get(i).hasSkill(SkillCollection.DINO_TAG)) {
+				numInArray = i;
+				break;
+			}
+		}
+		
+		player.removeItemFromInventory((player.getInventory().get(numInArray)));
 	}
 
 }
