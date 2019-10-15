@@ -2,7 +2,7 @@ package game;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 
 import edu.monash.fit2099.engine.*;
 import game.Behaviour;
@@ -12,14 +12,14 @@ public class Velociraptor extends Actor {
 	GameMap map;
 	public List<Behaviour> actionFactories = new ArrayList<Behaviour>();
 	private Behaviour behaviour;
-	private Random rand = new Random();
+	
 	//find a protoceratops
 	
 		
 	public Velociraptor(String name) {
 		super(name, 'v', 100);
 		
-		this.behaviour = new EatBehaviour();
+		this.behaviour = new HuntBehaviour("Proto");
 		
 	}
 	
@@ -39,8 +39,9 @@ public class Velociraptor extends Actor {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		for (Behaviour factory : actionFactories) {
-			Action action = factory.getAction(this, map);
+	 {
+		 Action action = behaviour.getAction(this, map);
+			//Action action = factory.getAction(this, map);
 			if(action != null)
 				return action;
 			
