@@ -16,8 +16,10 @@ public class SeekBehaviour implements Behaviour {
 
 	private Location target = null;
 	private String food;
+	private String food2;
+	private String foodItem;
 	
-	public SeekBehaviour(String foodSource) {
+	public SeekBehaviour(String foodSource, String foodSource2, String itemFood) {
 		//
 		//FIND CLOSEST TREE
 		//		
@@ -35,7 +37,7 @@ public class SeekBehaviour implements Behaviour {
 		outerloop:
 			for (int i = 0; i < map.getXRange().max(); i++) {
 				for (int k = 0; k < map.getYRange().max(); k++) {
-					if (map.at(i, k).getGround().toString().contains(food)) {
+					if (map.at(i, k).getGround().toString().contains(food)||map.at(i, k).getItems().toString().contains(foodItem) || map.at(i, k).getActor().toString().contains(food)) {
 						target = map.at(i,k);
 						break outerloop;
 					}
@@ -55,7 +57,7 @@ public class SeekBehaviour implements Behaviour {
 			}
 		}
 		if (currentDistance == 0) {
-			actor.heal(5);
+			
 			here.setGround(new Dirt());
 		}
 	
