@@ -20,7 +20,7 @@ public class Velociraptor extends Actor {
 		super(name, 'v', 100);
 		
 		this.behaviour = new HuntBehaviour("Proto");
-		
+		this.addSkill(SkillCollection.LAND_WALK);		
 	}
 	
 	

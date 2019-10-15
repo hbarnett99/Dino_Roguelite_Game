@@ -12,7 +12,7 @@ import game.Egg.DinosaurType;
 
 public class BuyAction extends ShopAction {
 	
-	ArrayList<PortableDinoItem> shopStock = new ArrayList<PortableDinoItem>();
+	ArrayList<Item> shopStock = new ArrayList<Item>();
 
 	public BuyAction() {
 		shopStock.add(new HerbivoreFood());
@@ -20,6 +20,7 @@ public class BuyAction extends ShopAction {
 		shopStock.add(new DinoTag());
 		shopStock.add(new Egg(DinosaurType.PROTOCERATOPS));
 		shopStock.add(new Egg(DinosaurType.VELOCIRAPTOR));
+		shopStock.add(new Boat());
 	}
 
 	@Override
@@ -28,7 +29,7 @@ public class BuyAction extends ShopAction {
 		String executeMessage = "";
 		
 		for (int i = 0; i < shopStock.size(); i++) {
-			System.out.println((i+1) + ": " + shopStock.get(i).toString() +  " - " + Player.moneyFormat(shopStock.get(i).getBuyValue()));
+			System.out.println((i+1) + ": " + shopStock.get(i).toString() +  " - " + Player.moneyFormat(((PortableDinoItem)shopStock.get(i)).getBuyValue()));
 		}
 		
 		while (true) {
