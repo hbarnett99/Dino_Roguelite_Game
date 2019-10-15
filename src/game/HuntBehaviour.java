@@ -49,33 +49,18 @@ public class HuntBehaviour extends Action implements Behaviour {
 		int maxY;
 		
 		//x min
-		if (here.x()-5 <= map.getXRange().min()) {
-			minX =  map.getXRange().min();
-		}
-		else {
-			minX = here.x()-5;
-		}
+		if (here.x()-5 <= map.getXRange().min()) {minX =  map.getXRange().min();}
+		else {minX = here.x()-5;}
 		//y min
-		if (here.y()-5 <= map.getYRange().min()) {
-			minY =  map.getYRange().min();
-		}
-		else {
-			minY = here.y()-5;
-		}
+		if (here.y()-5 <= map.getYRange().min()) {minY =  map.getYRange().min();}
+		else {minY = here.y()-5;}
 		//xMax
-		if (here.x()-5 <= map.getXRange().max()) {
-			maxX = map.getXRange().max();
-		}
-		else {
-			maxX = here.x()+5;
-		}
+		if (here.x()-5 <= map.getXRange().max()) {maxX = map.getXRange().max();}
+		else {maxX = here.x()+5;}
 		//maxY
-		if (here.x()-5 <= map.getYRange().max()) {
-			maxY = map.getYRange().max();
-		}
-		else {
-			maxY = here.y()+5;
-		}
+		if (here.x()-5 <= map.getYRange().max()) {maxY = map.getYRange().max();}
+		else {maxY = here.y()+5;}
+		
 		outerloop:
 		for (int i = minX; i < maxX; i++) {
 			for (int k = minY; k < maxY; k++) {

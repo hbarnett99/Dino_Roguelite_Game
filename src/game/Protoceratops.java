@@ -28,7 +28,7 @@ public class Protoceratops extends Actor {
 		
 		//behaviour = new WanderBehaviour();
 		
-		behaviour = new SeekBehaviour("Tree");
+		behaviour = new SeekBehaviour("Tree","Herb");
 	}
 
 	@Override
