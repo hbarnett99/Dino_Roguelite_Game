@@ -17,12 +17,15 @@ public class SeekBehaviour implements Behaviour {
 	private Random random = new Random();
 	private Location target = null;
 	private String food;
+	private String food2;
+	private String foodItem;
 	
-	public SeekBehaviour(String foodSource) {
+	public SeekBehaviour(String foodSource, String itemFood) {
 		//
 		//FIND CLOSEST TREE
 		//		
 		food = foodSource;
+		foodItem = itemFood;
 		//this.target = subject;
 	}
 
@@ -51,13 +54,16 @@ public class SeekBehaviour implements Behaviour {
 		if (here.x()-5 <= map.getYRange().max()) {maxY = map.getYRange().max();}
 		else {maxY = here.y()+5;}
 		outerloop:
+
 			for (int i = minX; i < maxX; i++) {
 				for (int k = minY; k < maxY; k++) {
-					if (map.at(i, k).getGround().toString().contains(food)) {
+					if (map.at(i, k).getGround().toString().contains(food)){
 						target = map.at(i,k);
 						break outerloop;
 					}
-					
+					else if (map.at(i, k).getItems().toString().contains(foodItem)){
+						
+					}				
 				}
 	
 			}		
