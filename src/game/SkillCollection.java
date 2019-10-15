@@ -9,5 +9,7 @@ public enum SkillCollection {
 	HERBIVORE_FOOD,
 	CARNIVORE_FOOD,
 	TAG_DINO,
-	DINO_TAG;
+	DINO_TAG,
+	WATER_WALK,
+	LAND_WALK;
 }

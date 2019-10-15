@@ -19,6 +19,8 @@ public class Player extends Actor {
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
+		//Allows Actor to walk on Land
+		this.addSkill(SkillCollection.LAND_WALK);
 	}
 
 	@Override
@@ -37,10 +39,18 @@ public class Player extends Actor {
 		}
 		
 		//Checks to see if a dino can be tagged
-		if (checkForTag() && dinoAdjacent(map)) {
+		if (checkForItem(SkillCollection.DINO_TAG) && dinoAdjacent(map)) {
 			actions.add(new TagDino());
 		}
-		
+				
+		//Checks if the user has a boat to allow them to cross water
+		if (checkForItem(SkillCollection.WATER_WALK)) {
+			this.addSkill(SkillCollection.WATER_WALK);
+		}
+		else {
+			this.removeSkill(SkillCollection.WATER_WALK);
+		}		
+				
 		return menu.showMenu(this, actions, display);
 	}
 	
@@ -92,11 +102,11 @@ public class Player extends Actor {
 	/*
 	 * @return haveTag 	A boolean to check if the player has a DinoTag in their inventory 
 	 */
-	private boolean checkForTag() {
+	private boolean checkForItem(SkillCollection skillOfItem) {
 		boolean haveTag = false;
 		int checkBags = 0;
 		while (this.getInventory().size() > checkBags) {
-			if (this.getInventory().get(checkBags).hasSkill(SkillCollection.DINO_TAG)) {
+			if (this.getInventory().get(checkBags).hasSkill(skillOfItem)) {
 				haveTag = true;
 			}
 			checkBags++;
