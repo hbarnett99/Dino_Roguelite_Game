@@ -28,7 +28,7 @@ public class Protoceratops extends Actor {
 		
 		//behaviour = new WanderBehaviour();
 		
-		behaviour = new SeekBehaviour("Tree");
+		behaviour = new SeekBehaviour("Tree","Herb");
 	}
 
 	@Override
@@ -46,9 +46,9 @@ public class Protoceratops extends Actor {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		Action wander = behaviour.getAction(this, map);
-		if (wander != null)
-			return wander;
+		 Action wander = behaviour.getAction(this, map);
+			if(wander != null)
+				return wander;
 		
 		return new DoNothingAction();
 	}
