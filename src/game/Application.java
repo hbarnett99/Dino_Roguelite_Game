@@ -71,6 +71,8 @@ public class Application {
 		"..........++....................................................................",
 		"................................................................................");
 
+
+		//Change southMap to northMap to swap maps on line below
 		GameMap southGameMap = new GameMap(groundFactory, southMap);
 		GameMap northGameMap = new GameMap(groundFactory, northMap);
 		world.addGameMap(southGameMap);
