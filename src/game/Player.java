@@ -27,6 +27,8 @@ public class Player extends Actor {
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		//Shows the players wallet each turn
 		System.out.println("Wallet: "+ displayWallet());
+
+		actions.add(new QuitAction());
 		
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
@@ -49,7 +51,7 @@ public class Player extends Actor {
 		}
 		else {
 			this.removeSkill(SkillCollection.WATER_WALK);
-		}		
+		}
 				
 		return menu.showMenu(this, actions, display);
 	}
