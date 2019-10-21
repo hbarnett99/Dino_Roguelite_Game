@@ -28,12 +28,12 @@ public class Water extends ExpansiveGround {
 			for (int i = 0; i < locations.size(); i++) {
 				double random = Math.random();
 				if (locations.get(i).getGround().toString().contains("Dirt") || locations.get(i).getGround().toString().contains("Grass")) {
-					if (random <= 0.1) {
+					if (random <= 0.01) {
 						location.setGround(new Reed());
 					}
 				}
 				else if (locations.get(i).getGround().toString().contains("Reed")){
-					if (random <= 0.05) {
+					if (random <= 0.005) {
 						location.setGround(new Reed());
 					}
 				}
