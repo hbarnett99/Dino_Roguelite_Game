@@ -23,7 +23,7 @@ public class Reed extends ExpansiveGround {
 		
 		double random = Math.random();
 		
-		if(random <= 0.01) {
+		if(random <= 0.1) {
 			if (!location.containsAnActor())
 			location.map().addActor(new Fish(), location);
 		}
