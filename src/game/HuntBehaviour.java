@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.PrimitiveIterator.OfDouble;
 import java.util.Random;
 
 import edu.monash.fit2099.engine.Action;
@@ -16,33 +17,37 @@ public class HuntBehaviour extends Action implements Behaviour {
 	private Actor target;
 	GameMap map;
 	private Random random = new Random();
-	private String hunted = "";
+	private String hunted;
+	private String hunted2;
+	private Item foodItem1;
+	private Item foodItem2;
+	private Item Corpses;
+	private Item itemTarget;
+	private Location targetLocation;
+	private Boolean isActor = false;
+	
+	
 	public HuntBehaviour(String hunted) {
 		this.hunted = hunted;
 	}
+	public HuntBehaviour(String hunted, CarnivoreFood carnivoreFood, Corpse corpse) {
+		this.hunted = hunted;
+		this.foodItem1 = new CarnivoreFood();
+		this.Corpses = corpse;
+	}
+	public HuntBehaviour(String hunted, String hunted2, CarnivoreFood carnivoreFood, Corpse corpse) {
+		this.hunted = hunted;	
+		this.hunted2 = hunted2;
+		this.foodItem1 = carnivoreFood;
+		this.Corpses = corpse;
+	}
+	
+	
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
 		ArrayList<Action> actions = new ArrayList<Action>();
 		Location here = map.locationOf(actor);
 		
-		
-	
-		//finding target
-		/*
-		for (int i = 0; i < map.getXRange().max(); i++) {
-			for (int k = 0; k < map.getYRange().max(); k++) {
-				if (map.isAnActorAt(map.at(i, k))) {
-					if (map.at(i, k).getActor().toString().contains(hunted)) {
-						target = map.getActorAt(map.at(i, k));
-						break outerloop;
-					}
-					
-				}
-				
-			}
-
-		}
-		*/
 		int minX;
 		int minY;
 		int maxX;
@@ -65,37 +70,89 @@ public class HuntBehaviour extends Action implements Behaviour {
 		for (int i = minX; i < maxX; i++) {
 			for (int k = minY; k < maxY; k++) {
 				if (map.isAnActorAt(map.at(i, k))) {
-					if (map.at(i, k).getActor().toString().contains(hunted)) {
+					if (hunted!=null&&map.at(i, k).getActor().toString().contains(hunted)) {
 						target = map.getActorAt(map.at(i, k));
+						isActor = true;
 						break outerloop;
-					}						
-				}					
+					}
+					else if (hunted2!=null&&map.at(i, k).getActor().toString().contains(hunted2)) {
+						target = map.getActorAt(map.at(i, k));
+						isActor = true;
+						break outerloop;
+					}
+				}
+				else if (foodItem1!=null&&map.at(i, k).getItems().toString().contains(foodItem1.toString())) {
+					targetLocation = map.at(i,k);
+					itemTarget = foodItem1;
+					isActor = false;
+					break outerloop;
+				}
+				else if (foodItem2!=null&&map.at(i, k).getItems().contains(foodItem2)) {
+					targetLocation = map.at(i,k);
+					itemTarget = foodItem2;
+					isActor = false;
+					break outerloop;
+				}
+				else if (Corpses!=null&&map.at(i, k).getItems().contains(Corpses)) {
+					targetLocation = map.at(i,k);
+					itemTarget = Corpses;
+					isActor = false;
+					break outerloop;
+				}
 			}
 		}
 		
 		//tracking action
-		if(map.locationOf(target)!=null) {
-			Location there = map.locationOf(target);
-			int currentDistance = distance(here, there);
-			for (Exit exit : here.getExits()) {
-				Location destination = exit.getDestination();
-				if (destination.canActorEnter(actor)) {
-					int newDistance = distance(destination, there);
-					if (newDistance < currentDistance) {
-						return new MoveActorAction(destination, exit.getName());
-						
+		if (isActor== true) {
+			if(map.locationOf(target)!=null) {
+				Location there = map.locationOf(target);
+				int currentDistance = distance(here, there);
+				for (Exit exit : here.getExits()) {
+					Location destination = exit.getDestination();
+					if (destination.canActorEnter(actor)) {
+						int newDistance = distance(destination, there);
+						if (newDistance < currentDistance) {
+							return new MoveActorAction(destination, exit.getName());
+							
+						}
+					}
+				}
+			}
+		}
+		else if (isActor==false) {
+			if(targetLocation!=null) {
+				int currentDistance = distance(here, targetLocation);
+				for (Exit exit : here.getExits()) {
+					Location destination = exit.getDestination();
+					if (destination.canActorEnter(actor)) {
+						int newDistance = distance(destination, targetLocation);
+						if (newDistance < currentDistance) {
+							return new MoveActorAction(destination, exit.getName());
+						}
 					}
 				}
 			}
 		}
 		//eating action
 		Location there = map.locationOf(target);
-
+		
 		if(there !=null) {
 			if (distance(here ,there) <3) {
-				return new EatAction(target);
+				if (isActor == true) {
+					return new EatAction(target);
+				}
 			}
 		}
+		else if(targetLocation!=null) {
+			for (int j = 0; j < targetLocation.getItems().size(); j++) {
+				if (targetLocation.getItems().get(j).toString().contains(foodItem1.toString())) {
+					targetLocation.removeItem(foodItem1);
+					
+				}
+			}
+			
+		}
+		
 		//Wander Behaviour
 		for (Exit exit : map.locationOf(actor).getExits()) {
             Location destination = exit.getDestination();

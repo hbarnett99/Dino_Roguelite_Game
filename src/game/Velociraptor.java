@@ -5,21 +5,22 @@ import java.util.List;
 
 
 import edu.monash.fit2099.engine.*;
+import game.CarnivoreFood;
 import game.Behaviour;
 
-public class Velociraptor extends Actor {
+public class Velociraptor extends Dinosaur {
 
 	GameMap map;
 	public List<Behaviour> actionFactories = new ArrayList<Behaviour>();
 	private Behaviour behaviour;
-	
+	private CarnivoreFood carnFood;
 	//find a protoceratops
 	
 		
 	public Velociraptor(String name) {
 		super(name, 'v', 100);
-		
-		this.behaviour = new HuntBehaviour("Proto");
+		hunger = 20;
+		this.behaviour = new HuntBehaviour("Proto", carnFood, new Corpse("Proto"));
 		this.addSkill(SkillCollection.LAND_WALK);		
 	}
 	
@@ -40,15 +41,19 @@ public class Velociraptor extends Actor {
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 	 {
+		 hunger -=1;
+		 if (hunger <= 0) {
+			return new dieAction();
+		}
 		 Action action = behaviour.getAction(this, map);
 			//Action action = factory.getAction(this, map);
 			if(action != null)
 				return action;
 			
-			
+			return new DoNothingAction();
 		}
 		
-		return new DoNothingAction();
+		
 
 	}
 }

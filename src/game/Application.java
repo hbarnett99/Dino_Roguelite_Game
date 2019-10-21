@@ -83,11 +83,10 @@ public class Application {
 		gameMap.at(8, 6).addActor(proto1);
 		gameMap.at(10, 12).addActor(new Protoceratops("Protoceratops"));
 		gameMap.at(30, 10).addActor(new Fish());
-		
+		gameMap.at(60, 12).addItem(new CarnivoreFood());
 		//adds Velociraptors
 		Velociraptor veloc1 = new Velociraptor("Velociraptor");
 		gameMap.at(60, 11).addActor(veloc1);
-		veloc1.actionFactories.add(new HuntBehaviour("Proto"));
 		//veloc1.actionFactories.add(new WanderBehaviour());
 		//veloc1.actionFactories.add(new EatBehaviour());
 		//gameMap.at(10, 15).addActor(new Velociraptor("Velociraptor"));

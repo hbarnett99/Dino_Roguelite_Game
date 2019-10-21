@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.MoveActorAction;
 
@@ -18,16 +19,34 @@ public class SeekBehaviour implements Behaviour {
 	private Location target = null;
 	private String food;
 	private String food2;
-	private String foodItem;
+	private Item foodItem;
+	private Item foodItem2;
+	private Item foodMisc;
+	private Boolean isGround = false;
 	
-	public SeekBehaviour(String foodSource, String itemFood) {
+	
+	public SeekBehaviour(String foodSource, Item itemFood, String secondaryfoodSource,Item secondaryitemFood,Item miscFood) {
 		//
 		//FIND CLOSEST TREE
 		//		
 		food = foodSource;
+		food2 = secondaryfoodSource;
 		foodItem = itemFood;
+		foodItem2 = secondaryitemFood;
+		foodMisc = miscFood;
+		
 		//this.target = subject;
 	}
+
+	public SeekBehaviour(String foodSource, HerbivoreFood herbivoreFood) {
+		food = foodSource;
+		foodItem = herbivoreFood;
+	}
+	public SeekBehaviour(String foodSource, CarnivoreFood herbivoreFood) {
+		food = foodSource;
+		foodItem = herbivoreFood;
+	}
+
 
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
@@ -57,13 +76,35 @@ public class SeekBehaviour implements Behaviour {
 
 			for (int i = minX; i < maxX; i++) {
 				for (int k = minY; k < maxY; k++) {
-					if (map.at(i, k).getGround().toString().contains(food)){
+					if (food !=null && map.at(i, k).getGround().toString().contains(food)){
 						target = map.at(i,k);
+						isGround = true;
 						break outerloop;
 					}
-					else if (map.at(i, k).getItems().toString().contains(foodItem)){
-						
-					}				
+					else if (food2!=null && map.at(i, k).getGround().toString().contains(food2)) {
+						target = map.at(i,k);
+						isGround = true;
+						break outerloop;
+
+					}
+					else if (foodItem!=null&& map.at(i, k).getItems().contains(foodItem)){
+						target = map.at(i,k);
+						isGround = false;
+						break outerloop;
+					}
+					else if(foodItem2!=null&& map.at(i, k).getItems().contains(foodItem2))
+					{
+						target = map.at(i,k);
+						isGround = false;
+						break outerloop;
+					}
+					else if(foodMisc!=null&& map.at(i, k).getItems().contains(foodMisc))
+					{
+						target = map.at(i,k);
+						isGround = false;
+						break outerloop;
+					}
+					
 				}
 	
 			}		
@@ -78,8 +119,26 @@ public class SeekBehaviour implements Behaviour {
 				}
 			}
 		}
-		if (currentDistance == 0) {
-			here.setGround(new Dirt());
+		if (currentDistance == 0) 
+		{
+			if (isGround == true) {
+				here.setGround(new Dirt());
+			}
+			else if (isGround== false) {
+				if (here.getItems().contains(foodItem)) {
+					here.getItems().remove(foodItem);
+				}
+				if (here.getItems().contains(foodItem2)) {
+					here.getItems().remove(foodItem2);
+				}
+				if (here.getItems().contains(foodMisc)) {
+					here.getItems().remove(foodMisc);
+				}
+				
+				
+			}
+		
+				
 		}
 		//Wander Behaviour
 		for (Exit exit : map.locationOf(actor).getExits()) {

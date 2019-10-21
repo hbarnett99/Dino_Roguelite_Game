@@ -7,12 +7,13 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Item;
 
 /**
  * A herbivorous dinosaur.
  *
  */
-public class Protoceratops extends Actor {
+public class Protoceratops extends Dinosaur {
 	// Will need to change this to a collection if Protoceratops gets additional Behaviours.
 	private Behaviour behaviour;
 	int hitPoints = 5;
@@ -25,10 +26,10 @@ public class Protoceratops extends Actor {
 	 */
 	public Protoceratops(String name) {
 		super(name, 'd', 100);
-		
+		hunger = 10;
 		//behaviour = new WanderBehaviour();
 		
-		behaviour = new SeekBehaviour("Tree","Herb");
+		behaviour = new SeekBehaviour("Tree", new HerbivoreFood());
 		this.addSkill(SkillCollection.LAND_WALK);
 	}
 
@@ -47,6 +48,7 @@ public class Protoceratops extends Actor {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+		
 		 Action wander = behaviour.getAction(this, map);
 			if(wander != null)
 				return wander;
