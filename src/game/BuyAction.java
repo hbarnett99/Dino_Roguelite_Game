@@ -10,7 +10,7 @@ import game.Egg.DinosaurType;
  *
  */
 
-public class BuyAction extends SelectAction {
+public class BuyAction extends ShopAction {
 	
 	ArrayList<Item> shopStock = new ArrayList<Item>();
 
@@ -33,7 +33,7 @@ public class BuyAction extends SelectAction {
 		}
 		
 		while (true) {
-			numberOfItemInArray = Integer.parseInt(selector("What item would you like to sell?")) - 1;
+			numberOfItemInArray = selector("What item would you like to buy?");
 			try {		
 				buyFromShop(shopStock.get(numberOfItemInArray), (Player) actor);
 				break;

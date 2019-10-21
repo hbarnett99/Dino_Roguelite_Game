@@ -8,9 +8,9 @@ import edu.monash.fit2099.engine.*;
  * Abstract clas to SellAction and BuyAction. Gives an itemCaster method and an input selector
  */
 
-public abstract class SelectAction extends Action {
+public abstract class ShopAction extends Action {
 
-	public SelectAction() {
+	public ShopAction() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -35,20 +35,22 @@ public abstract class SelectAction extends Action {
 	/*Takes a user input as a string, and converts it to an integer
 	 * Static to allow other methods (namely BuyAction) to use it.
 	 */
-    protected String selector(String prompt) {
+    protected int selector(String prompt) {
         System.out.print("\n" + prompt+ "\n");
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        String s;
+        String s = null;
+        int i;
         while(true) {
 	        try {
 	            s = in.readLine();
+	            i = Integer.parseInt(s) - 1;
 	            break;
 	        } catch (Exception e) {
 	            System.out.println("Not a number; Try again");
 	        }
         }
 
-        return s;
+        return i;
     }
 
 }

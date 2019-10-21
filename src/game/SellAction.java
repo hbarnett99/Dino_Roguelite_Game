@@ -6,7 +6,7 @@ import edu.monash.fit2099.engine.*;
  * Action that allows the Player to sell at the Shop
  */
 
-public class SellAction extends SelectAction {
+public class SellAction extends ShopAction {
 	
 	protected String hotKey;
 
@@ -30,7 +30,7 @@ public class SellAction extends SelectAction {
 			}
 			//Ensures the Player picks a valid option
 			while (true) {
-				numberOfItemInArray = Integer.parseInt(selector("What item would you like to sell?")) - 1;
+				numberOfItemInArray = selector("What item would you like to sell?");
 				try {
 					executeMessage = actor.getInventory().get(numberOfItemInArray) + " was sold for " + Player.moneyFormat(itemCaster(actor.getInventory().get(numberOfItemInArray)).getSellValue());
 					break;
