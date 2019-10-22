@@ -84,6 +84,7 @@ public class Application {
 		southGameMap.at(8, 6).addActor(proto1);
 		southGameMap.at(10, 12).addActor(new Protoceratops("Protoceratops"));
 		southGameMap.at(30, 10).addActor(new Fish());
+		southGameMap.at(31, 11).addActor(new Plesioaur("Plesioaur"));
 		southGameMap.at(60, 12).addItem(new CarnivoreFood());
 		//adds Velociraptors
 		Velociraptor veloc1 = new Velociraptor("Velociraptor");

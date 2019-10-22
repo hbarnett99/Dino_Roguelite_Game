@@ -1,7 +1,6 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
-import javafx.geometry.HPos;
 
 /**
  * Class representing the Player.

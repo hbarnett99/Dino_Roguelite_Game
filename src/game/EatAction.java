@@ -19,9 +19,16 @@ public class EatAction  extends Action {
 	public String execute(Actor actor, GameMap map) {
 		String result = "";
 		
+		if (target.getDisplayChar() != '>') {
+			Item corpse = new Corpse("Dead");
+			map.locationOf(target).addItem(corpse);
+		}
 		
-		Item corpse = new Corpse("Dead");
-		map.locationOf(target).addItem(corpse);
+		//
+		//gain hunger
+		if (target.getDisplayChar()!='@') {
+			target.asDinosaur().getFoodValue();
+		}
 		
 		Actions dropActions = new Actions();
 		for (Item item : target.getInventory())

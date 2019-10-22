@@ -7,7 +7,8 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 
 public class Dinosaur extends Actor {
-	protected int hunger;
+	public int hunger = 0;
+	public int foodValue = 0;
 	public Dinosaur(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 		
@@ -27,7 +28,9 @@ public class Dinosaur extends Actor {
 	int getHunger() {
 		 return hunger;
 	}
-	
+	int getFoodValue() {
+		return foodValue;
+	}
 	public void increaseHunger(int hungerPoints) {
 		hunger += hungerPoints;
 	}
