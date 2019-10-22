@@ -5,13 +5,11 @@ import java.util.List;
 
 import edu.monash.fit2099.engine.*;
 import game.CarnivoreFood;
-import game.Behaviour;
 
 public class Plesioaur extends Dinosaur {
 
 	GameMap map;
 	public List<Behaviour> actionFactories = new ArrayList<Behaviour>();
-	private Behaviour behaviour;
 	private CarnivoreFood carnFood;
 	
 	
@@ -45,20 +43,9 @@ public class Plesioaur extends Dinosaur {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-	 {
-		 hitPoints -=1;
-		 if (hitPoints <= 0) {
-			return new dieAction();
-		}
-		 Action action = behaviour.getAction(this, map);
-			//Action action = factory.getAction(this, map);
-			if(action != null)
-				return action;
-			
+		super.playTurn(actions, lastAction, map, display);
+		 
 			return new DoNothingAction();
-		}
-		
-		
-
+	
 	}
 }
