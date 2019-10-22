@@ -1,6 +1,7 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
+import javafx.geometry.HPos;
 
 /**
  * Class representing the Player.
@@ -9,6 +10,7 @@ public class Player extends Actor {
 
 	private Menu menu = new Menu();
 	private int wallet = 0;
+	private int turnCounter = -1;
 
 	/**
 	 * Constructor.
@@ -25,6 +27,13 @@ public class Player extends Actor {
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+		turnCounter++;
+		
+		System.out.println("Inventory:");
+		
+		if(!displayInventory()) {
+			System.out.println("empty");
+		}
 		//Shows the players wallet each turn
 		System.out.println("Wallet: "+ displayWallet());
 
@@ -52,7 +61,10 @@ public class Player extends Actor {
 		else {
 			this.removeSkill(SkillCollection.WATER_WALK);
 		}
-				
+
+		if (this.hitPoints <= 0) {
+			lossByDeath(turnCounter);
+		}
 		return menu.showMenu(this, actions, display);
 	}
 	
@@ -116,6 +128,11 @@ public class Player extends Actor {
 		return haveTag;
 	}
 	
+	private void lossByDeath(int counter) {
+		System.out.println("\nYou have died and lost the game after " + counter + " turns.\nThanks for playing!");
+		System.exit(0);
+	}
+	
 	/*
 	 * @return true if a dino is next to the player
 	 */
@@ -132,6 +149,24 @@ public class Player extends Actor {
 
 		return isAdjacent;
 	}
+	
+	public int getTurns() {
+		return turnCounter;
+	}
+	
+	public boolean displayInventory() {
+		boolean check = false;
+		
+		if(this.getInventory().size() != 0) {
+			check = true;
+			for (int i = 0; i < this.getInventory().size(); i++) {
+				System.out.println(this.getInventory().get(i));
+			}
+		}
+		return check;
+	}
+	
+
 
 	
 }

@@ -1,9 +1,9 @@
 package game;
 
-public class Boat extends PortableDinoItem {
+public class Boat extends SaleItem {
 
 	public Boat() {
-		super("Boat", 'x', 5, 15);
+		super("Boat", 'b', false, 15, 5);
 		this.addSkill(SkillCollection.WATER_WALK);
 		// TODO Auto-generated constructor stub
 	}

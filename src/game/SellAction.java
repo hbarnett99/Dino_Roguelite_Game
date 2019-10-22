@@ -17,20 +17,13 @@ public class SellAction extends SelectAction {
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		int numberOfItemInArray;
-		String executeMessage;
+		String executeMessage = "Your inventory is empty!";
 		
 		//Checks if the player has any items
-		if (actor.getInventory().size() == 0) {
-			executeMessage = "You have nothing in your Inventory";
-		}
-		//Shows the players items if they have any
-		else {
-			for (int i = 0; i < actor.getInventory().size(); i++) {
-				System.out.println((i+1) + ": " + actor.getInventory().get(i)+  " - " + Player.moneyFormat(itemCaster(actor.getInventory().get(i)).getSellValue()));
-			}
+		if (displayInventorySell((Player)actor)) {
 			//Ensures the Player picks a valid option
 			while (true) {
-				numberOfItemInArray = Integer.parseInt(selector("What item would you like to sell?")) - 1;
+				numberOfItemInArray = intSelector("What item would you like to sell?") - 1;
 				try {
 					executeMessage = actor.getInventory().get(numberOfItemInArray) + " was sold for " + Player.moneyFormat(itemCaster(actor.getInventory().get(numberOfItemInArray)).getSellValue());
 					break;
@@ -54,6 +47,18 @@ public class SellAction extends SelectAction {
 	private void sellToShop(Item item, Actor actor) {
 		((Player) actor).addToWallet(itemCaster(item).getSellValue());
 		actor.removeItemFromInventory(item);
+	}
+	
+	public boolean displayInventorySell(Player player) {
+		boolean check = false;
+		
+		if(player.getInventory().size() != 0) {
+			check = true;
+			for (int i = 0; i < player.getInventory().size(); i++) {
+				System.out.println((i+1) + ": " + player.getInventory().get(i)+  " - " + player.moneyFormat(SelectAction.itemCaster(player.getInventory().get(i)).getSellValue()));
+			}
+		}
+		return check;
 	}
 
 

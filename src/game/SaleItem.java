@@ -11,8 +11,10 @@ public class SaleItem extends Item {
 	protected int buyValue;
 
 
-	public SaleItem(String name, char displayChar, boolean portable, int initSellValue, int initBuyValue) {
+	public SaleItem(String name, char displayChar, boolean portable, int initBuyValue, int initSellValue) {
 		super(name, displayChar, portable);
+		sellValue = initSellValue;
+		buyValue = initBuyValue;
 		// TODO Auto-generated constructor stub
 	}
 	

@@ -29,11 +29,11 @@ public class BuyAction extends SelectAction {
 		String executeMessage = "";
 		
 		for (int i = 0; i < shopStock.size(); i++) {
-			System.out.println((i+1) + ": " + shopStock.get(i).toString() +  " - " + Player.moneyFormat(((PortableDinoItem)shopStock.get(i)).getBuyValue()));
+			System.out.println((i+1) + ": " + shopStock.get(i).toString() +  " - " + Player.moneyFormat(((SaleItem)shopStock.get(i)).getBuyValue()));
 		}
 		
 		while (true) {
-			numberOfItemInArray = Integer.parseInt(selector("What item would you like to sell?")) - 1;
+			numberOfItemInArray = intSelector("What item would you like to sell?") - 1;
 			try {		
 				buyFromShop(shopStock.get(numberOfItemInArray), (Player) actor);
 				break;
