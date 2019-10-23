@@ -15,8 +15,7 @@ public class QuitAction extends SelectAction{
             try {
                 choice = charSelector("Are you sure you want to quit the game?\nPress Y to quit, or any other key to continue playing");
                 if (choice.equalsIgnoreCase("y")){
-                    System.out.println("\nYou've quit the game after " + ((Player)actor).getTurns() + " turns.\nThanks for playing!");
-                    System.exit(0);
+                	GameEnd.quitGame((Player)actor);
                 }
                 break;
             } catch (Exception e) {

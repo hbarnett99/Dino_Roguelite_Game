@@ -20,7 +20,7 @@ public class Application {
 		List<String> southMap = Arrays.asList(
 		"................................................................................",
 		"................................................................................",
-		".....#######....................................................................",
+		".....###.###....................................................................",
 		".....#-----#....................................................................",
 		".....#-----#....................................................................",
 		".....###.###....................................................................",
@@ -98,15 +98,13 @@ public class Application {
 		//veloc1.actionFactories.add(new EatBehaviour());
 		//gameMap.at(10, 15).addActor(new Velociraptor("Velociraptor"));
 
-		//adds an egg
-		
+		//Adds teleporters between the two maps for testing
 		TestTeleporter tele1 = new TestTeleporter("TELE", 'X', false);
 		TestTeleporter tele2 = new TestTeleporter("TELE", 'X', false);
 		southGameMap.at(7, 4).addItem(tele1);
 		northGameMap.at(7, 4).addItem(tele2);
-		tele1.addAction(new MoveActorAction(northGameMap.at(8, 4), "to Mars!"));
-		tele2.addAction(new MoveActorAction(southGameMap.at(8, 4), "to Mars!"));
-		
+		tele1.addAction(new MoveActorAction(northGameMap.at(8, 4), "to other Map!"));
+		tele2.addAction(new MoveActorAction(southGameMap.at(8, 4), "to other Map!"));
 
 		world.run();
 	}

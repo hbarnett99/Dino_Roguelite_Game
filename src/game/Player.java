@@ -63,7 +63,7 @@ public class Player extends Actor {
 
 		//Stops game if Players HP = 0
 		if (this.hitPoints <= 0) {
-			lossByDeath(turnCounter);
+			GameEnd.loseGame(this);
 		}
 		
 		return menu.showMenu(this, actions, display);
@@ -132,11 +132,6 @@ public class Player extends Actor {
 		return haveTag;
 	}
 	
-	private void lossByDeath(int counter) {
-		System.out.println("\nYou have died and lost the game after " + counter + " turns.\nThanks for playing!");
-		System.exit(0);
-	}
-	
 	/**
 	 * @param map			Current map
 	 * @return isAdjacent	True if a dino is next to the player
@@ -181,8 +176,8 @@ public class Player extends Actor {
 	
 	/**
 	 * Boolean check to see if they are standing on the north or south edge of a map
-	 * @param map
-	 * @return check
+	 * @param map		The current map
+	 * @return check	Returns true if at the the top edge r bottom edge
 	 */
 	private boolean checkMapEdge(GameMap map) {
 		boolean check = false;
