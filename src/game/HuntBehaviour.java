@@ -146,13 +146,13 @@ public class HuntBehaviour extends Action implements Behaviour {
 		else if(targetLocation!=null) {
 			for (int j = 0; j < targetLocation.getItems().size(); j++) {
 				if (targetLocation.getItems().get(j).toString().contains(foodItem1.toString())) {
-					targetLocation.removeItem(foodItem1);
-					
+					int health = foodItem1.asFood().getFoodValue();
+					targetLocation.removeItem(targetLocation.getItems().get(j));
+					return new HealAction(health);
 				}
 			}
 			
 		}
-		
 		//Wander Behaviour
 		for (Exit exit : map.locationOf(actor).getExits()) {
             Location destination = exit.getDestination();
@@ -170,8 +170,9 @@ public class HuntBehaviour extends Action implements Behaviour {
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		Item corpse = new Corpse("Dead");
-		map.locationOf(target).addItem(corpse);
-		
+		if (target.getDisplayChar()!='>') {
+			map.locationOf(target).addItem(corpse);
+		}
 		Actions dropActions = new Actions();
 		for (Item item : target.getInventory())
 			dropActions.add(item.getDropAction());

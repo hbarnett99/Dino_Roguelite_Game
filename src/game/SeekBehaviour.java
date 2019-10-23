@@ -123,16 +123,26 @@ public class SeekBehaviour implements Behaviour {
 		{
 			if (isGround == true) {
 				here.setGround(new Dirt());
+				return new HealAction(10);
 			}
 			else if (isGround== false) {
-				if (here.getItems().contains(foodItem)) {
-					here.getItems().remove(foodItem);
-				}
-				if (here.getItems().contains(foodItem2)) {
-					here.getItems().remove(foodItem2);
-				}
-				if (here.getItems().contains(foodMisc)) {
-					here.getItems().remove(foodMisc);
+				int health;
+				for (int j = 0; j < here.getItems().size(); j++) {
+					if (here.getItems().get(j).toString().contains(foodItem.toString())) {
+						here.removeItem(here.getItems().get(j));
+						health = foodItem.asFood().getFoodValue();
+						return new HealAction(health);
+					}
+					if (here.getItems().get(j).toString().contains(foodItem2.toString())) {				
+						here.removeItem(here.getItems().get(j));
+						health = foodItem.asFood().getFoodValue();
+						return new HealAction(health);
+					}
+					if (here.getItems().get(j).toString().contains(foodMisc.toString())) {
+						here.removeItem(here.getItems().get(j));
+						health = foodItem.asFood().getFoodValue();
+						return new HealAction(health);
+					}
 				}
 				
 				

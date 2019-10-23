@@ -1,30 +1,33 @@
 package game;
-
 import java.util.ArrayList;
 import java.util.List;
 
 
 import edu.monash.fit2099.engine.*;
 import game.CarnivoreFood;
-import game.Behaviour;
 
-public class Velociraptor extends Dinosaur {
+public class Plesioaur extends Dinosaur {
 
 	GameMap map;
 	public List<Behaviour> actionFactories = new ArrayList<Behaviour>();
 	private CarnivoreFood carnFood;
-	//find a protoceratops
 	
-		
-	public Velociraptor(String name) {
-		super(name, 'v', 100);
+	
+
+	public Plesioaur(String name, char displayChar, int hitPoints) {
+		super(name, 'l', 200);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Plesioaur(String name) {
+		super(name, 'F', 100);
 		hunger = 20;
 		hitPoints = 50;
-		this.behaviour = new HuntBehaviour("Proto", carnFood, new Corpse("Proto"));
-		this.addSkill(SkillCollection.LAND_WALK);		
+		this.behaviour = new HuntBehaviour("Fish", carnFood, new Corpse("Fish"));
+		this.addSkill(SkillCollection.WATER_WALK);
+		// TODO Auto-generated constructor stub
 	}
-	
-	
+
 	@Override
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		return new Actions(new EatAction(this));
@@ -41,7 +44,8 @@ public class Velociraptor extends Dinosaur {
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		super.playTurn(actions, lastAction, map, display);
+		 
+			return new DoNothingAction();
 	
-		return new DoNothingAction();
 	}
 }

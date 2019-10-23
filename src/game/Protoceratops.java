@@ -15,8 +15,7 @@ import edu.monash.fit2099.engine.Item;
  */
 public class Protoceratops extends Dinosaur {
 	// Will need to change this to a collection if Protoceratops gets additional Behaviours.
-	private Behaviour behaviour;
-	int hitPoints = 5;
+	
 	GameMap map;
 	/** 
 	 * Constructor.
@@ -27,6 +26,8 @@ public class Protoceratops extends Dinosaur {
 	public Protoceratops(String name) {
 		super(name, 'd', 100);
 		hunger = 10;
+		hitPoints = 50;
+		foodValue = 10;
 		//behaviour = new WanderBehaviour();
 		
 		behaviour = new SeekBehaviour("Tree", new HerbivoreFood());
@@ -48,12 +49,7 @@ public class Protoceratops extends Dinosaur {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		
-		 Action wander = behaviour.getAction(this, map);
-			if(wander != null)
-				return wander;
-		
-		return new DoNothingAction();
+		return super.playTurn(actions, lastAction, map, display);
+			
 	}
-
 }

@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
 
-public class Fish extends Actor {
+public class Fish extends Dinosaur {
 
 
 
@@ -27,6 +27,7 @@ public class Fish extends Actor {
 		super("Fish", '>', 1);
 		this.addSkill(SkillCollection.WATER_WALK);
 		behaviour = new WanderBehaviour();
+		foodValue = 3;
 	}
 
 	@Override
