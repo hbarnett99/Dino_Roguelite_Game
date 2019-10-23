@@ -72,7 +72,7 @@ public class Application {
 		"................................................................................");
 
 		//Change southMap to northMap to swap maps on line below
-		GameMap southGameMap = new GameMap(groundFactory, northMap);
+		GameMap southGameMap = new GameMap(groundFactory, southMap);
 		GameMap northGameMap = new GameMap(groundFactory, northMap);
 		world.addGameMap(southGameMap);
 		world.addGameMap(northGameMap);
@@ -80,12 +80,17 @@ public class Application {
 		Actor player = new Player("Player", '@', 100);
 		world.addPlayer(player, southGameMap.at(8, 4));
 
+		//Populate South Map
 		Protoceratops proto1 = new Protoceratops("Protoceratops");
 		southGameMap.at(8, 6).addActor(proto1);
 		southGameMap.at(10, 12).addActor(new Protoceratops("Protoceratops"));
-		southGameMap.at(30, 10).addActor(new Fish());
-		southGameMap.at(31, 11).addActor(new Plesioaur("Plesioaur"));
-		southGameMap.at(60, 12).addItem(new CarnivoreFood());
+		
+		//Populate North Map
+		northGameMap.at(30, 10).addActor(new Fish());
+		northGameMap.at(31, 11).addActor(new Plesioaur("Plesioaur"));
+		northGameMap.at(60, 12).addItem(new CarnivoreFood());
+		northGameMap.at(10, 12).addActor(new Protoceratops("Protoceratops"));
+		
 		//adds Velociraptors
 		Velociraptor veloc1 = new Velociraptor("Velociraptor");
 		southGameMap.at(60, 11).addActor(veloc1);
@@ -94,8 +99,14 @@ public class Application {
 		//gameMap.at(10, 15).addActor(new Velociraptor("Velociraptor"));
 
 		//adds an egg
-
-
+		
+		TestTeleporter tele1 = new TestTeleporter("TELE", 'X', false);
+		TestTeleporter tele2 = new TestTeleporter("TELE", 'X', false);
+		southGameMap.at(7, 4).addItem(tele1);
+		northGameMap.at(7, 4).addItem(tele2);
+		tele1.addAction(new MoveActorAction(northGameMap.at(8, 4), "to Mars!"));
+		tele2.addAction(new MoveActorAction(southGameMap.at(8, 4), "to Mars!"));
+		
 
 		world.run();
 	}
