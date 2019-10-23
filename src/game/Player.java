@@ -1,7 +1,6 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
-import javafx.geometry.HPos;
 
 /**
  * Class representing the Player.
@@ -28,12 +27,12 @@ public class Player extends Actor {
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		turnCounter++;
+			
+		System.out.println(checkMapEdge(map));
 		
-		System.out.println("Inventory:");
+		//Function call to show inventory
+		displayInventory();
 		
-		if(!displayInventory()) {
-			System.out.println("empty");
-		}
 		//Shows the players wallet each turn
 		System.out.println("Wallet: "+ displayWallet());
 
@@ -62,13 +61,15 @@ public class Player extends Actor {
 			this.removeSkill(SkillCollection.WATER_WALK);
 		}
 
+		//Stops game if Players HP = 0
 		if (this.hitPoints <= 0) {
 			lossByDeath(turnCounter);
 		}
+		
 		return menu.showMenu(this, actions, display);
 	}
 	
-	/*
+	/**
 	 * Method that is used to add funds to players wallet when selling items 
 	*/
 	
@@ -76,9 +77,10 @@ public class Player extends Actor {
 		wallet += numToAdd;
 	}
 	
-	/*
+	/**
 	 * Method that is used to take funds to players wallet when buying items
-	 * @returns a boolean to see if the player had enough money, if false, the transaction fails
+	 * @param numToTake		The item's value
+	 * @returns check		Boolean to see if the player had enough money, if false, the transaction fails
 	*/
 	
 	public boolean takeFromWallet(int numToTake) {
@@ -93,7 +95,7 @@ public class Player extends Actor {
 		return check;
 	}
 	
-	/*
+	/**
 	 * @returns the amount of money player has in the form of a formatted String
 	*/
 	
@@ -102,8 +104,9 @@ public class Player extends Actor {
 		return moneyFormat(wallet);
 	}
 	
-	/*
-	 * @return moneyString	a String formatted for currency. Static so other classes with no reference can use it
+	/**
+	 * @param value			The amount of money being parsed in as an integer
+	 * @return moneyString	S String formatted for currency. Static so other classes with no reference can use it
 	 */
 	public static String moneyFormat(int value) {
 		String moneyString = "";
@@ -113,8 +116,9 @@ public class Player extends Actor {
 		return moneyString;
 	}
 	
-	/*
-	 * @return haveTag 	A boolean to check if the player has a DinoTag in their inventory 
+	/**
+	 * @param skillOfItem	Enum of a skill given to an item
+	 * @return haveTag 		A boolean to check if the player has a DinoTag in their inventory 
 	 */
 	private boolean checkForItem(SkillCollection skillOfItem) {
 		boolean haveTag = false;
@@ -133,8 +137,9 @@ public class Player extends Actor {
 		System.exit(0);
 	}
 	
-	/*
-	 * @return true if a dino is next to the player
+	/**
+	 * @param map			Current map
+	 * @return isAdjacent	True if a dino is next to the player
 	 */
 	private boolean dinoAdjacent(GameMap map) {
 		boolean isAdjacent = false;
@@ -150,15 +155,23 @@ public class Player extends Actor {
 		return isAdjacent;
 	}
 	
+	/**
+	 * @return turnCounter - Used when a game stops
+	 */
 	public int getTurns() {
 		return turnCounter;
 	}
 	
+	/**
+	 * @return boolean for if the players inventory has something in it. 
+	 * If if does have something, it prints it as a list
+	 */
 	public boolean displayInventory() {
 		boolean check = false;
 		
 		if(this.getInventory().size() != 0) {
 			check = true;
+			System.out.println("Inventory:");
 			for (int i = 0; i < this.getInventory().size(); i++) {
 				System.out.println(this.getInventory().get(i));
 			}
@@ -166,7 +179,49 @@ public class Player extends Actor {
 		return check;
 	}
 	
-
-
+	/**
+	 * Boolean check to see if they are standing on the north or south edge of a map
+	 * @param map
+	 * @return check
+	 */
+	private boolean checkMapEdge(GameMap map) {
+		boolean check = false;
+		
+		//Adds skill if at the top of the map
+		if(map.locationOf(this).y() == map.getYRange().min()) {
+			this.addSkill(SkillCollection.MOVE_NORTH);
+			check = true;
+		} 
+		else {
+			this.removeSkill(SkillCollection.MOVE_NORTH);
+		}
+		
+		//Adds skill if at the bottom of the map
+		if (map.locationOf(this).y() == map.getYRange().max()) {
+			this.addSkill(SkillCollection.MOVE_SOUTH);
+			check = true;
+		}
+		else {
+			this.removeSkill(SkillCollection.MOVE_SOUTH);
+		}
+		
+		return check;
+	}
 	
+	/**
+	 * Used to swap the between maps
+	 * @param newMap 	The map to move to
+	 * @param oldMap 	The map the player is currently on
+	 * @param actions	Array of player's actions
+	 */
+	public void swapMap(GameMap northMap, GameMap southMap, Actions actions) {
+		//if (this.hasSkill(SkillCollection.MOVE_NORTH)){
+			actions.add(new MoveActorAction(northMap.at(southMap.locationOf(this).x(), northMap.getYRange().max()), "Move to north map"));
+		//}
+		if (this.hasSkill(SkillCollection.MOVE_SOUTH)) {
+			actions.add(new MoveActorAction(southMap.at(northMap.locationOf(this).x(), southMap.getYRange().min()), "Move to south map"));
+		}
+	}
+	
+
 }

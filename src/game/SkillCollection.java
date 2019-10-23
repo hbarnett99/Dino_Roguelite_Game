@@ -11,5 +11,7 @@ public enum SkillCollection {
 	TAG_DINO,
 	DINO_TAG,
 	WATER_WALK,
-	LAND_WALK;
+	LAND_WALK,
+	MOVE_NORTH,
+	MOVE_SOUTH;
 }

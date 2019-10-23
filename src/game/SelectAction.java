@@ -26,7 +26,7 @@ public abstract class SelectAction extends Action {
 		return null;
 	}
 	
-	//Casts an item into a portableDinoItem
+	//Casts an item into a SaleItem
 	protected static SaleItem itemCaster(Item itemToCast) {
 		return (SaleItem) itemToCast;
 	}
