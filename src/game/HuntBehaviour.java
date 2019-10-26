@@ -12,7 +12,9 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.MoveActorAction;
 import edu.monash.fit2099.engine.Exit;
-
+//
+//Used for all carnivores
+//
 public class HuntBehaviour extends Action implements Behaviour {
 	private Actor target;
 	GameMap map;
@@ -26,7 +28,13 @@ public class HuntBehaviour extends Action implements Behaviour {
 	private Location targetLocation;
 	private Boolean isActor = false;
 	
-	
+	/**
+	 * Constructor.
+	 *
+	 * @param hunted      A string representing the type of creature to be hunted
+	 * @param foodItem1   
+	 * @param hitPoints   Player's starting number of hitpoints
+	 */
 	public HuntBehaviour(String hunted) {
 		this.hunted = hunted;
 	}
