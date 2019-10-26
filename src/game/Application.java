@@ -49,7 +49,7 @@ public class Application {
 		"................................................................................",
 		".......+++......................................................................",
 		".....++++.......................................................................",
-		".......+-...............................................................+++.....",
+		".......++...............................................................+++.....",
 		"........++++......................~~~~~~~~~~~~~~..........................++....",
 		"..............................~~~~~~~~~~~~~~~~~~~~.......................++.....",
 		"..........................~~~~~~~~~~~~~~~~~~~~~~~~~~~.....................++....",
@@ -98,13 +98,11 @@ public class Application {
 		//veloc1.actionFactories.add(new EatBehaviour());
 		//gameMap.at(10, 15).addActor(new Velociraptor("Velociraptor"));
 
-		//Adds teleporters between the two maps for testing
-		TestTeleporter tele1 = new TestTeleporter("TELE", 'X', false);
-		TestTeleporter tele2 = new TestTeleporter("TELE", 'X', false);
-		southGameMap.at(7, 4).addItem(tele1);
-		northGameMap.at(7, 4).addItem(tele2);
-		tele1.addAction(new MoveActorAction(northGameMap.at(8, 4), "to other Map!"));
-		tele2.addAction(new MoveActorAction(southGameMap.at(8, 4), "to other Map!"));
+		//Loop to add exits to the north of the south map, and the south of the north map
+		for (int i = 0; i < northGameMap.getXRange().max(); i++) {
+			southGameMap.at(i, southGameMap.getYRange().min()).addExit(new Exit("North to new map", northGameMap.at(i, northGameMap.getYRange().max()), "8"));
+			northGameMap.at(i, northGameMap.getYRange().max()).addExit(new Exit("South to new map", southGameMap.at(i, southGameMap.getYRange().min()), "2"));
+		}
 
 		world.run();
 	}

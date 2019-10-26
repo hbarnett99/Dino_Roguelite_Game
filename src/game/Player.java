@@ -8,8 +8,9 @@ import edu.monash.fit2099.engine.*;
 public class Player extends Actor {
 
 	private Menu menu = new Menu();
-	private int wallet = 0;
-	private int turnCounter = -1;
+	private int wallet;
+	private int turnCounter;
+	private boolean isAlive;
 
 	/**
 	 * Constructor.
@@ -22,49 +23,55 @@ public class Player extends Actor {
 		super(name, displayChar, hitPoints);
 		//Allows Actor to walk on Land
 		this.addSkill(SkillCollection.LAND_WALK);
+		wallet = 0;
+		turnCounter = -1;
+		isAlive = true;
 	}
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		turnCounter++;
-			
-		System.out.println(checkMapEdge(map));
 		
 		//Function call to show inventory
 		displayInventory();
 		
 		//Shows the players wallet each turn
 		System.out.println("Wallet: "+ displayWallet());
+		
+		//this.hitPoints -= 20;
 
-		actions.add(new QuitAction());
+		//Stops game if Players HP = 0
+		if (this.hitPoints <= 0) {
+			GameEnd.loseGame(this, map);
+			isAlive = false;
+		}
+		
+		//Checks to see if the player is in the shop
+		if(isAlive) {
+			actions.add(new QuitAction());
+			
+			if (map.locationOf(this).getGround().hasSkill(SkillCollection.SHOP)){
+				actions.add(new BuyAction());
+				actions.add(new SellAction());
+			}
+			
+			//Checks to see if a dino can be tagged
+			if (checkForItem(SkillCollection.DINO_TAG) && dinoAdjacent(map)) {
+				actions.add(new TagDino());
+			}
+					
+			//Checks if the user has a boat to allow them to cross water
+			if (checkForItem(SkillCollection.WATER_WALK)) {
+				this.addSkill(SkillCollection.WATER_WALK);
+			}
+			else {
+				this.removeSkill(SkillCollection.WATER_WALK);
+			}
+		}
 		
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
-		
-		//Checks to see if the player is in the shop
-		if (map.locationOf(this).getGround().hasSkill(SkillCollection.SHOP)){
-			actions.add(new BuyAction());
-			actions.add(new SellAction());
-		}
-		
-		//Checks to see if a dino can be tagged
-		if (checkForItem(SkillCollection.DINO_TAG) && dinoAdjacent(map)) {
-			actions.add(new TagDino());
-		}
-				
-		//Checks if the user has a boat to allow them to cross water
-		if (checkForItem(SkillCollection.WATER_WALK)) {
-			this.addSkill(SkillCollection.WATER_WALK);
-		}
-		else {
-			this.removeSkill(SkillCollection.WATER_WALK);
-		}
-
-		//Stops game if Players HP = 0
-		if (this.hitPoints <= 0) {
-			GameEnd.loseGame(this);
-		}
 		
 		return menu.showMenu(this, actions, display);
 	}
@@ -173,50 +180,4 @@ public class Player extends Actor {
 		}
 		return check;
 	}
-	
-	/**
-	 * Boolean check to see if they are standing on the north or south edge of a map
-	 * @param map		The current map
-	 * @return check	Returns true if at the the top edge r bottom edge
-	 */
-	private boolean checkMapEdge(GameMap map) {
-		boolean check = false;
-		
-		//Adds skill if at the top of the map
-		if(map.locationOf(this).y() == map.getYRange().min()) {
-			this.addSkill(SkillCollection.MOVE_NORTH);
-			check = true;
-		} 
-		else {
-			this.removeSkill(SkillCollection.MOVE_NORTH);
-		}
-		
-		//Adds skill if at the bottom of the map
-		if (map.locationOf(this).y() == map.getYRange().max()) {
-			this.addSkill(SkillCollection.MOVE_SOUTH);
-			check = true;
-		}
-		else {
-			this.removeSkill(SkillCollection.MOVE_SOUTH);
-		}
-		
-		return check;
-	}
-	
-	/**
-	 * Used to swap the between maps
-	 * @param newMap 	The map to move to
-	 * @param oldMap 	The map the player is currently on
-	 * @param actions	Array of player's actions
-	 */
-	public void swapMap(GameMap northMap, GameMap southMap, Actions actions) {
-		//if (this.hasSkill(SkillCollection.MOVE_NORTH)){
-			actions.add(new MoveActorAction(northMap.at(southMap.locationOf(this).x(), northMap.getYRange().max()), "Move to north map"));
-		//}
-		if (this.hasSkill(SkillCollection.MOVE_SOUTH)) {
-			actions.add(new MoveActorAction(southMap.at(northMap.locationOf(this).x(), southMap.getYRange().min()), "Move to south map"));
-		}
-	}
-	
-
 }

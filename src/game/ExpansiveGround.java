@@ -13,6 +13,7 @@ public abstract class ExpansiveGround extends Ground {
 	public ExpansiveGround(char displayChar) {
 		super(displayChar);
 		// TODO Auto-generated constructor stub
+		
 	}
 	
 	public ArrayList<Location> getSurroundings(Location location) {
@@ -25,6 +26,10 @@ public abstract class ExpansiveGround extends Ground {
 			locations.add(location.map().at(location.x()-1, location.y()+1));//SouthWest
 			locations.add(location.map().at(location.x()-1, location.y()));//West
 			locations.add(location.map().at(location.x()-1, location.y()-1));//NorthWest
+			
+			
+
+			//checkTopMap(location);
 		}
 		return locations;
 	}
@@ -43,6 +48,6 @@ public abstract class ExpansiveGround extends Ground {
 	
 	public void setName(String newName) {
 		name = newName;
-		}
+	}
 
 }

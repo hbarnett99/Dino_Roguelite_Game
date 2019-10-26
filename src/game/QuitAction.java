@@ -3,12 +3,8 @@ package game;
 import edu.monash.fit2099.engine.*;
 
 public class QuitAction extends SelectAction{
-
-    public void QuitAction(){
-
-    }
-
-    public String execute(Actor actor, GameMap map){
+	
+	public String execute(Actor actor){
         String choice;
 
         while (true) {

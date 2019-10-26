@@ -16,10 +16,6 @@ public class Corpse extends Food {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public int getSellValue() {
-		return sellValue;
-	}
-	
 	public void removeCorpse(Location location) {
 		location.removeItem(this);
 	}
