@@ -17,6 +17,7 @@ public class Dinosaur extends Actor {
 	public int hunger = 0;
 	public int foodValue = 0;
 	public Behaviour behaviour;
+	
 	public Dinosaur(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 		

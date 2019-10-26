@@ -28,7 +28,7 @@ public class BuyAction extends SelectAction {
 		shopStock.add(new MarineFood());
 		shopStock.add(new Egg(DinosaurType.PROTOCERATOPS, false));
 		shopStock.add(new Egg(DinosaurType.VELOCIRAPTOR, false));
-		shopStock.add(new Egg(DinosaurType.PROTOCERATOPS, false));
+		shopStock.add(new Egg(DinosaurType.PLESIOSAUR, false));
 		//shopStock.add(new Egg(DinosaurType.PTERANODON, false));
 		shopStock.add(new Egg(DinosaurType.T_REX, false));
 	}
