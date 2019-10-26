@@ -8,6 +8,9 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.NumberRange;
 
+/**
+ * Establishes what a dinosaur can eat, and when
+ */
 public class EatBehaviour extends Action implements Behaviour {
 	private Actor target;
 	

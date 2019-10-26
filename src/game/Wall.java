@@ -3,6 +3,9 @@ package game;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 
+/**
+ * A ground that actors cannot enter
+ */
 public class Wall extends Ground {
 
 	public Wall() {

@@ -12,9 +12,14 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.MoveActorAction;
 import edu.monash.fit2099.engine.Exit;
+
 //
 //Used for all carnivores
 //
+
+/**
+ * Behaviour for dinosaurs to actively seek food / other actors they can eat *
+ */
 public class HuntBehaviour extends Action implements Behaviour {
 	private Actor target;
 	GameMap map;

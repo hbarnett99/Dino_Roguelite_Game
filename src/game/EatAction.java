@@ -6,6 +6,9 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 
+/**
+ * The action for dinosaurs to eat
+ */
 public class EatAction  extends Action {
 
 	//actor to be attacked

@@ -7,7 +7,7 @@ package game;
 
 public class CarnivoreFood extends Food {
 	
-	/*Super order is:
+	/**Super order is:
 	  (Name of the item, Character of the item, enum of the food type, food value, cost of the item)  
 	*/
 

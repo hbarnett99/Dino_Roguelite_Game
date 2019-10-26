@@ -2,11 +2,10 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+/**
+ * An action to allow players to quit the game
+ */
 public class QuitAction extends SelectAction{
-
-    public void QuitAction(){
-
-    }
 
     public String execute(Actor actor, GameMap map){
         String choice;
@@ -14,8 +13,8 @@ public class QuitAction extends SelectAction{
         while (true) {
             try {
                 choice = charSelector("Are you sure you want to quit the game?\nPress Y to quit, or any other key to continue playing");
-                if (choice.equalsIgnoreCase("y")){
-                	GameEnd.quitGame((Player)actor);
+                if (choice.equalsIgnoreCase("y")) {
+                    GameEnd.quitGame(actor.asPlayer(), map);;
                 }
                 break;
             } catch (Exception e) {

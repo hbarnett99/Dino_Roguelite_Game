@@ -12,15 +12,25 @@ import game.Egg.DinosaurType;
 
 public class BuyAction extends SelectAction {
 	
+	/**
+	 * Array of Items that the shop sells
+	 */
 	ArrayList<Item> shopStock = new ArrayList<Item>();
 
+	/**
+	 * Constructor adds all possible items that can be purchased
+	 */
 	public BuyAction() {
+		shopStock.add(new DinoTag());
+		shopStock.add(new Boat());
 		shopStock.add(new HerbivoreFood());
 		shopStock.add(new CarnivoreFood());
-		shopStock.add(new DinoTag());
-		shopStock.add(new Egg(DinosaurType.PROTOCERATOPS));
-		shopStock.add(new Egg(DinosaurType.VELOCIRAPTOR));
-		shopStock.add(new Boat());
+		shopStock.add(new MarineFood());
+		shopStock.add(new Egg(DinosaurType.PROTOCERATOPS, false));
+		shopStock.add(new Egg(DinosaurType.VELOCIRAPTOR, false));
+		shopStock.add(new Egg(DinosaurType.PLESIOSAUR, false));
+		//shopStock.add(new Egg(DinosaurType.PTERANODON, false));
+		shopStock.add(new Egg(DinosaurType.T_REX, false));
 	}
 
 	@Override
@@ -32,6 +42,7 @@ public class BuyAction extends SelectAction {
 			System.out.println((i+1) + ": " + shopStock.get(i).toString() +  " - " + Player.moneyFormat(((SaleItem)shopStock.get(i)).getBuyValue()));
 		}
 		
+		//Keeps on trying until a valid option is chosen
 		while (true) {
 			numberOfItemInArray = intSelector("What item would you like to sell?") - 1;
 			try {		
@@ -51,8 +62,13 @@ public class BuyAction extends SelectAction {
 		return "Buy an item";
 	}
 	
+	/**
+	 * Removes the money from the players inventory and then adds the item to the players inventory
+	 * @param itemToBuy		The item that is going to be purchased
+	 * @param player		The player
+	 */
 	public void buyFromShop(Item itemToBuy, Player player) {
-		if(player.takeFromWallet(itemCaster(itemToBuy).getBuyValue())) {
+		if(player.takeFromWallet(itemToBuy.asSaleItem().getBuyValue())) {
 			player.addItemToInventory(itemToBuy);
 		}
 	}

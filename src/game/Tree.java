@@ -3,6 +3,10 @@ package game;
 import edu.monash.fit2099.engine.Location;
 import java.util.ArrayList;
 
+/**
+ * Class for ground Trees. They grow and spread around themselves
+ */
+
 public class Tree extends Land {
 	private int age = 0;
 	
@@ -24,9 +28,7 @@ public class Tree extends Land {
 		if (age == 10)
 			displayChar = 'T';
 		
-		/*
-		Checks if the location is within bounds of map -1 to know if it can grow trees next to it
-		*/
+
 		try {
 		//if (location.map().getYRange().contains(location.y()) && location.map().getYRange().contains(location.x())) {
 		if (checkSurroundings(location)){
@@ -59,12 +61,5 @@ public class Tree extends Land {
 			System.out.println(location.getDisplayChar());
 			System.out.println(location.y());
 		}
-		
-		
-		//location.map().at(x, y);
-		
-		//this.createTrees(location);
-	
 	}
 }
-//this is a test

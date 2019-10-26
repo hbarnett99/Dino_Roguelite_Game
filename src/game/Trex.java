@@ -7,6 +7,9 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
 
+/**
+ * Class for the T-Rex Dino
+ */
 public class Trex extends Dinosaur {
 
 	GameMap map;

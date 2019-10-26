@@ -13,7 +13,9 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.MoveActorAction;
 
-
+/**
+ * Behaviour for dinosaurs to actively seek a given target
+ */
 public class SeekBehaviour implements Behaviour {
 	private Random random = new Random();
 	private Location target = null;
