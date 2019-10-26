@@ -10,7 +10,6 @@ public class GameEnd {
 	
 	/**
 	 * Static method called for whenever a win condition is met.
-	 * @param player	The player
 	 */
 	public static void winGamePlayer () {
 		System.out.println("\nCongratulations, you hatched a T-Rex and have won.\nThanks for playing!");
