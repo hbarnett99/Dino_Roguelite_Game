@@ -10,7 +10,7 @@ public abstract class Food extends PortableDinoItem {
 	
     public enum FoodType {PLANT, MEAT};
     FoodType foodType;
-    private int foodValue;
+    public int foodValue;
 
     public Food(String name, char displayChar, FoodType initFoodType, int initFoodValue, int initSellValue, int initBuyValue) {
         super(name, displayChar, initSellValue, initBuyValue);

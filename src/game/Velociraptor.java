@@ -20,7 +20,7 @@ public class Velociraptor extends Dinosaur {
 		super(name, 'v', 100);
 		hunger = 20;
 		hitPoints = 50;
-		this.behaviour = new HuntBehaviour("Proto", carnFood, new Corpse("Proto"));
+		this.behaviour = new HuntBehaviour("Proto", carnFood, new Corpse("Dead"));
 		this.addSkill(SkillCollection.LAND_WALK);		
 	}
 	
@@ -38,10 +38,10 @@ public class Velociraptor extends Dinosaur {
 	 * 
 	 * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
 	 */
-	@Override
-	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		super.playTurn(actions, lastAction, map, display);
-	
-		return new DoNothingAction();
-	}
+//	@Override
+//	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+//		super.playTurn(actions, lastAction, map, display);
+//	
+//		return new DoNothingAction();
+//	}
 }

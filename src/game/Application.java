@@ -92,8 +92,9 @@ public class Application {
 		northGameMap.at(10, 12).addActor(new Protoceratops("Protoceratops"));
 		
 		//adds Velociraptors
-		Velociraptor veloc1 = new Velociraptor("Velociraptor");
-		southGameMap.at(60, 11).addActor(veloc1);
+		southGameMap.at(60, 11).addActor(new Velociraptor("Velociraptor"));
+		southGameMap.at(63, 12).addActor(new Trex("Trex"));
+		southGameMap.at(62, 11).addItem(new Corpse("Dead"));
 		//veloc1.actionFactories.add(new WanderBehaviour());
 		//veloc1.actionFactories.add(new EatBehaviour());
 		//gameMap.at(10, 15).addActor(new Velociraptor("Velociraptor"));

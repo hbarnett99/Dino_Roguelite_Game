@@ -20,7 +20,7 @@ public class HuntBehaviour extends Action implements Behaviour {
 	private String hunted;
 	private String hunted2;
 	private Item foodItem1;
-	private Item foodItem2;
+	
 	private Item Corpses;
 	private Item itemTarget;
 	private Location targetLocation;
@@ -87,13 +87,8 @@ public class HuntBehaviour extends Action implements Behaviour {
 					isActor = false;
 					break outerloop;
 				}
-				else if (foodItem2!=null&&map.at(i, k).getItems().contains(foodItem2)) {
-					targetLocation = map.at(i,k);
-					itemTarget = foodItem2;
-					isActor = false;
-					break outerloop;
-				}
-				else if (Corpses!=null&&map.at(i, k).getItems().contains(Corpses)) {
+				
+				else if (Corpses!=null&&map.at(i, k).getItems().toString().contains(Corpses.toString())) {
 					targetLocation = map.at(i,k);
 					itemTarget = Corpses;
 					isActor = false;
@@ -136,7 +131,7 @@ public class HuntBehaviour extends Action implements Behaviour {
 		//eating action
 		Location there = map.locationOf(target);
 		
-		if(there !=null) {
+		if(there !=null && target!=actor) {
 			if (distance(here ,there) <3) {
 				if (isActor == true) {
 					return new EatAction(target);
@@ -150,9 +145,18 @@ public class HuntBehaviour extends Action implements Behaviour {
 					targetLocation.removeItem(targetLocation.getItems().get(j));
 					return new HealAction(health);
 				}
+				
+				if (targetLocation.getItems().get(j).toString().contains(Corpses.toString())) {
+					int health = Corpses.asFood().getFoodValue();
+					targetLocation.removeItem(targetLocation.getItems().get(j));
+					System.out.print(health);
+					return new HealAction(health);
+					
+				}
 			}
 			
 		}
+		
 		//Wander Behaviour
 		for (Exit exit : map.locationOf(actor).getExits()) {
             Location destination = exit.getDestination();
