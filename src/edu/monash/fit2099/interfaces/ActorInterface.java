@@ -8,11 +8,20 @@ import game.*;
  */
 
 public interface ActorInterface {
-
+	
+	
+	/**
+	 * Casts actors to dinosaurs
+	 * @return Dinosaur		Actor casted as a Dino
+	 */
 	public default  Dinosaur asDinosaur() {
 		return this instanceof Dinosaur ? (Dinosaur) this : null;
 	}
 	
+	/**
+	 * Casts actors to players
+	 * @return Player	Actor casted as a Player
+	 */
 	public default  Player asPlayer() {
 		return this instanceof Player ? (Player) this : null;
 	}

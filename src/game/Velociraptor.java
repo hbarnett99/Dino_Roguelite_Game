@@ -8,6 +8,9 @@ import edu.monash.fit2099.engine.*;
 import game.CarnivoreFood;
 import game.Behaviour;
 
+/**
+ * Class for the Velociraptor Actor
+ */
 public class Velociraptor extends Dinosaur {
 
 	GameMap map;

@@ -6,6 +6,11 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 
+	/**
+	 * The action for actors to die
+	 *
+	 */
+
 public class dieAction extends Action {
 
 	@Override

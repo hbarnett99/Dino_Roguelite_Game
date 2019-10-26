@@ -1,5 +1,9 @@
 package game;
 
+/**
+ * Class to for a boat to allow the crossing of water
+ */
+
 public class Boat extends SaleItem {
 
 	public Boat() {

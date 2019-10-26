@@ -1,15 +1,11 @@
 package game;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Display;
-import edu.monash.fit2099.engine.DoNothingAction;
-import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.*;
 
+/**
+ * Class for the Fish
+ */
 public class Fish extends Dinosaur {
-
-
 
 	// Will need to change this to a collection if Protoceratops gets additional Behaviours.
 	private Behaviour behaviour;
@@ -19,8 +15,6 @@ public class Fish extends Dinosaur {
 	/** 
 	 * Constructor.
 	 * All fish are represented by a '^' and have 1 hit point.
-	 * 
-	 * @param name the name of this fish
 	 */
 	
 	public Fish() {

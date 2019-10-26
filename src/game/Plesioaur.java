@@ -6,6 +6,9 @@ import java.util.List;
 import edu.monash.fit2099.engine.*;
 import game.CarnivoreFood;
 
+/**
+ * Class for the Plesioaur, the water Dino
+ */
 public class Plesioaur extends Dinosaur {
 
 	GameMap map;

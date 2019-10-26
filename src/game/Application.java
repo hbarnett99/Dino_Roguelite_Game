@@ -76,34 +76,28 @@ public class Application {
 		GameMap northGameMap = new GameMap(groundFactory, northMap);
 		world.addGameMap(southGameMap);
 		world.addGameMap(northGameMap);
-
-		Actor player = new Player("Player", '@', 100);
-		world.addPlayer(player, southGameMap.at(8, 4));
-
-		//Populate South Map
-		Protoceratops proto1 = new Protoceratops("Protoceratops");
-		southGameMap.at(8, 6).addActor(proto1);
-		southGameMap.at(10, 12).addActor(new Protoceratops("Protoceratops"));
 		
-		//Populate North Map
-		northGameMap.at(30, 10).addActor(new Fish());
-		northGameMap.at(31, 11).addActor(new Plesioaur("Plesioaur"));
-		northGameMap.at(60, 12).addItem(new CarnivoreFood());
-		northGameMap.at(10, 12).addActor(new Protoceratops("Protoceratops"));
-		
-		//adds Velociraptors
-		southGameMap.at(60, 11).addActor(new Velociraptor("Velociraptor"));
-		southGameMap.at(63, 12).addActor(new Trex("Trex"));
-		southGameMap.at(62, 11).addItem(new Corpse("Dead"));
-		//veloc1.actionFactories.add(new WanderBehaviour());
-		//veloc1.actionFactories.add(new EatBehaviour());
-		//gameMap.at(10, 15).addActor(new Velociraptor("Velociraptor"));
-
 		//Loop to add exits to the north of the south map, and the south of the north map
 		for (int i = 0; i < northGameMap.getXRange().max(); i++) {
 			southGameMap.at(i, southGameMap.getYRange().min()).addExit(new Exit("North to new map", northGameMap.at(i, northGameMap.getYRange().max()), "8"));
 			northGameMap.at(i, northGameMap.getYRange().max()).addExit(new Exit("South to new map", southGameMap.at(i, southGameMap.getYRange().min()), "2"));
 		}
+
+		Actor player = new Player("Player", '@', 100);
+		world.addPlayer(player, southGameMap.at(8, 4));
+
+		//Populate South Map
+		southGameMap.at(8, 6).addActor(new Protoceratops("Protoceratops"));
+		southGameMap.at(10, 12).addActor(new Protoceratops("Protoceratops"));
+		southGameMap.at(60, 11).addActor(new Velociraptor("Velociraptor"));
+		//southGameMap.at(63, 12).addActor(new Trex("Trex"));
+		southGameMap.at(62, 11).addItem(new Corpse("Dead"));
+	
+		//Populate North Map
+		northGameMap.at(30, 10).addActor(new Fish());
+		northGameMap.at(31, 11).addActor(new Plesioaur("Plesioaur"));
+		northGameMap.at(60, 12).addItem(new CarnivoreFood());
+		northGameMap.at(10, 12).addActor(new Protoceratops("Protoceratops"));
 
 		world.run();
 	}

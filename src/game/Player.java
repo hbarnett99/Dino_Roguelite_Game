@@ -8,8 +8,20 @@ import edu.monash.fit2099.engine.*;
 public class Player extends Actor {
 
 	private Menu menu = new Menu();
+	
+	/**
+	 * The amount of money the player has
+	 */
 	private int wallet;
+	
+	/**
+	 * Counts the number of turns
+	 */
 	private int turnCounter;
+	
+	/**
+	 * Checks if the player is alive before processing the players actions
+	 */
 	private boolean isAlive;
 
 	/**
@@ -48,6 +60,7 @@ public class Player extends Actor {
 		
 		//Checks to see if the player is in the shop
 		if(isAlive) {
+			//Adds quit action each turn
 			actions.add(new QuitAction());
 			
 			if (map.locationOf(this).getGround().hasSkill(SkillCollection.SHOP)){
@@ -78,8 +91,8 @@ public class Player extends Actor {
 	
 	/**
 	 * Method that is used to add funds to players wallet when selling items 
+	 * @param numToAdd		The amount of money to be added to the players wallet (Dino value / Item value)
 	*/
-	
 	public void addToWallet(int numToAdd) {
 		wallet += numToAdd;
 	}
@@ -87,9 +100,8 @@ public class Player extends Actor {
 	/**
 	 * Method that is used to take funds to players wallet when buying items
 	 * @param numToTake		The item's value
-	 * @returns check		Boolean to see if the player had enough money, if false, the transaction fails
+	 * @return check		Boolean to see if the player had enough money, if false, the transaction fails
 	*/
-	
 	public boolean takeFromWallet(int numToTake) {
 		boolean check = false;
 		if (wallet - numToTake >= 0) {
@@ -103,11 +115,9 @@ public class Player extends Actor {
 	}
 	
 	/**
-	 * @returns the amount of money player has in the form of a formatted String
+	 * @return moneyFormatted	The amount of money player has in the form of a formatted String
 	*/
-	
 	public String displayWallet() {
-
 		return moneyFormat(wallet);
 	}
 	

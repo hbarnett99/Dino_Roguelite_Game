@@ -8,6 +8,11 @@ import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
 import game.Behaviour;
 
+/**
+ * The base class for Dinosaurs
+ *
+ */
+
 public class Dinosaur extends Actor {
 	public int hunger = 0;
 	public int foodValue = 0;

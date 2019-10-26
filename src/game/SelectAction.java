@@ -4,10 +4,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import edu.monash.fit2099.engine.*;
 
-/*
- * Abstract clas to SellAction and BuyAction. Gives an itemCaster method and an input selector
+/**
+ * Abstract class to SellAction and BuyAction. Gives an input selector
  */
-
 public abstract class SelectAction extends Action {
 
 	public SelectAction() {
@@ -26,15 +25,12 @@ public abstract class SelectAction extends Action {
 		return null;
 	}
 	
-	//Casts an item into a SaleItem
-	protected static SaleItem itemCaster(Item itemToCast) {
-		return (SaleItem) itemToCast;
-	}
 	
-	
-	/*Takes a user input as a string, and converts it to an integer
-	 * Static to allow other methods (namely BuyAction) to use it.
-	 */
+	/**
+	 * Takes a user input as a string
+     * @param prompt	A string that is displayed to the user to prompt what the input should be
+     * @return			the input as a string
+     */
     protected String charSelector(String prompt) {
         System.out.print("\n" + prompt+ "\n");
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -51,6 +47,11 @@ public abstract class SelectAction extends Action {
         return s;
     }
     
+    /**
+     * Takes and input and converts it to an integer
+     * @param prompt	A string that is displayed to the user to prompt what the input should be
+     * @return			the input converted to an integer
+     */
     protected int intSelector(String prompt) {
         System.out.print("\n" + prompt+ "\n");
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));

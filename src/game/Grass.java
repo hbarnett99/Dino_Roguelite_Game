@@ -1,8 +1,10 @@
 package game;
 
-import edu.monash.fit2099.engine.Ground;
-//import edu.monash.fit2099.engine.Location;
-
+/**
+ * 
+ * Class for grass
+ *
+ */
 
 public class Grass extends Land {
 
