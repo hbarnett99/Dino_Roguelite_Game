@@ -2,14 +2,14 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
-/*
+/**
  * Action to allow player to sell live dinosaurs
  */
 
 public class TagDino extends Action {
 
 	public TagDino() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
@@ -27,6 +27,18 @@ public class TagDino extends Action {
 		else if (dino.toString().equals("Velociraptor")){
 			dinoValue = 500;
 			dinoName = "Velociraptor";
+		}		
+		else if (dino.toString().equals("Plesiosaur")){
+			dinoValue = 5000;
+			dinoName = "Plesiosaur";
+		}		
+		else if (dino.toString().equals("Pteranodon")){
+			dinoValue = 5000;
+			dinoName = "Pteranodon";
+		}
+		else if (dino.toString().equals("T-Rex")){
+			dinoValue = 10000;
+			dinoName = "T-Rex";
 		}
 		else {
 			System.out.println("Cannot tag that actor.");
@@ -46,8 +58,11 @@ public class TagDino extends Action {
 	}
 	
 	
-	/*
-	 * @return adjacent actor (dino) found in Player class
+	/**
+	 * Finds the dino around the player
+	 * @param player 			The player
+	 * @param map				The game map
+	 * @return actorToReturn	The adjacent actor (dino) found in Player class
 	 */
 	private Actor dinoFinder(Actor player, GameMap map) {
 		Actor actorToReturn;
@@ -71,6 +86,10 @@ public class TagDino extends Action {
 		return actorToReturn;
 	}
 	
+	/**
+	 * Removes the DinoTag from the players inventory when a dino is tagged
+	 * @param player	The player
+	 */
 	private void removeTagInInventory (Actor player) {
 		int numInArray = 0;
 		
