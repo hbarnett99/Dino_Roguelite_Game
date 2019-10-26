@@ -16,6 +16,11 @@ public class Egg extends Food{
 	private DinosaurType dinoType;
 	private boolean isBred;
 	
+	/**
+	 * Constructor
+	 * @param initType	The type of dinosaur inside the egg
+	 * @param isBred	Bool true if the egg was bred
+	 */
 	public Egg(DinosaurType initType, boolean isBred) {
 		super("Egg", 'e', FoodType.MEAT, 10, 10, 50);
 		dinoType = initType;
