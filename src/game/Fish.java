@@ -27,7 +27,7 @@ public class Fish extends Dinosaur {
 		super("Fish", '>', 1);
 		this.addSkill(SkillCollection.WATER_WALK);
 		behaviour = new WanderBehaviour();
-		foodValue = 3;
+		foodValue = 10;
 	}
 
 	@Override

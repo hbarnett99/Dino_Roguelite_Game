@@ -15,15 +15,15 @@ public class Plesioaur extends Dinosaur {
 	
 
 	public Plesioaur(String name, char displayChar, int hitPoints) {
-		super(name, 'l', 200);
+		super(name, 'F', 200);
 		// TODO Auto-generated constructor stub
 	}
 
 	public Plesioaur(String name) {
 		super(name, 'F', 100);
-		hunger = 20;
+		hunger = 70;
 		hitPoints = 50;
-		this.behaviour = new HuntBehaviour("Fish", carnFood, new Corpse("Fish"));
+		this.behaviour = new HuntBehaviour("Fish", carnFood, new Corpse("Dead"));
 		this.addSkill(SkillCollection.WATER_WALK);
 		// TODO Auto-generated constructor stub
 	}
@@ -41,11 +41,5 @@ public class Plesioaur extends Dinosaur {
 	 * 
 	 * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
 	 */
-	@Override
-	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		super.playTurn(actions, lastAction, map, display);
-		 
-			return new DoNothingAction();
 	
-	}
 }

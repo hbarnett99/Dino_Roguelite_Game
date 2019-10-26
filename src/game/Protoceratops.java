@@ -25,7 +25,7 @@ public class Protoceratops extends Dinosaur {
 	 */
 	public Protoceratops(String name) {
 		super(name, 'd', 100);
-		hunger = 10;
+		hunger = 20;
 		hitPoints = 50;
 		foodValue = 10;
 		//behaviour = new WanderBehaviour();
@@ -34,22 +34,5 @@ public class Protoceratops extends Dinosaur {
 		this.addSkill(SkillCollection.LAND_WALK);
 	}
 
-	@Override
-	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
-		return new Actions(new AttackAction(this));
-	}
 
-	/**
-	 * Figure out what to do next.
-	 * 
-	 * FIXME: Protoceratops wanders around at random, or if no suitable MoveActions are available, it
-	 * just stands there.  That's boring.
-	 * 
-	 * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
-	 */
-	@Override
-	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		return super.playTurn(actions, lastAction, map, display);
-			
-	}
 }
