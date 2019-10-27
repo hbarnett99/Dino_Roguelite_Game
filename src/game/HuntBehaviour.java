@@ -37,8 +37,8 @@ public class HuntBehaviour extends Action implements Behaviour {
 	 * Constructor.
 	 *
 	 * @param hunted      A string representing the type of creature to be hunted
-	 * @param foodItem1   An item the dinosaur wants to eat, normally a type of Food
-	 * @param hitPoints   Dinos starting number of hitpoints
+//	 * @param foodItem1   An item the dinosaur wants to eat, normally a type of Food
+//	 * @param hitPoints   Dinos starting number of hitpoints
 	 * Different constructors so that different dinos with different needs can all use the same behaviour and still work
 	 */
 	public HuntBehaviour(String hunted) {
@@ -63,7 +63,7 @@ public class HuntBehaviour extends Action implements Behaviour {
 	
 	/**
 	 * this code block will search for a target, move towards the target, eat the target, OR if no target found it will randomly wander around
-	 * @returns an action, usually going to be a moveAction to the dinos target or a HealAction when the dino eats something
+	 * @return an action, usually going to be a moveAction to the dinos target or a HealAction when the dino eats something
 	 */
 	@Override
 	public Action getAction(Actor actor, GameMap map) {

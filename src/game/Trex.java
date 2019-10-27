@@ -16,9 +16,9 @@ public class Trex extends Dinosaur {
 	private CarnivoreFood carnFood;
 	/**
 	 * Constructor for Trex
-	 * @param name
-	 * @param displayChar
-	 * @param hitPoints
+	 * @param name			The name of the T-Rex
+	 * @param displayChar	The character that represents it on the map
+	 * @param hitPoints		The amount of health it has
 	 */
 	public Trex(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);

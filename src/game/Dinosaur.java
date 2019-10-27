@@ -12,16 +12,22 @@ import game.Behaviour;
  * The base class for Dinosaurs
  *
  */
-/**
- * 
- * @param hunger = hunger value for dinos
- * @param foodValue = what the dino is worth if it is eaten
- * @param behaviour = used to initialize a specific behaviour
- *
- */
+
 public class Dinosaur extends Actor {
+
+	/**
+	 * Hunger value for dinos
+	 */
 	public int hunger = 0;
+
+	/**
+	 * What the dino is worth if it is eaten
+	 */
 	public int foodValue = 0;
+
+	/**
+	 * used to initialize a specific behaviour
+	 */
 	public Behaviour behaviour;
 	
 	public Dinosaur(String name, char displayChar, int hitPoints) {
@@ -30,7 +36,7 @@ public class Dinosaur extends Actor {
 	}
 	/**
 	 * Method for decrementing hunger and returning an action for each dino 
-	 * @returns an action for the Dino to do that turn
+	 * @return an action for the Dino to do that turn
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
