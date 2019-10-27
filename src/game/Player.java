@@ -35,7 +35,7 @@ public class Player extends Actor {
 		super(name, displayChar, hitPoints);
 		//Allows Actor to walk on Land
 		this.addSkill(SkillCollection.LAND_WALK);
-		wallet = 1000000;
+		wallet = 0;
 		turnCounter = -1;
 		isAlive = true;
 	}
