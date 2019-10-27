@@ -17,11 +17,14 @@ public class dieAction extends Action {
 	public String execute(Actor actor, GameMap map) {
 		
 		String result = "";
-		
+		/**
+		 * @returns a string containing the name of the dino who has died and a reason
+		 * 
+		 */
 		
 		Item corpse = new Corpse("Dead");
 		map.locationOf(actor).addItem(corpse);
-		
+		//Adds a corpse at location of actor and then drops all the actors inventory, then removes the actor
 		Actions dropActions = new Actions();
 		for (Item item : actor.getInventory())
 			dropActions.add(item.getDropAction());

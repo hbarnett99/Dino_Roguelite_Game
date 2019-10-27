@@ -18,7 +18,10 @@ public class Velociraptor extends Dinosaur {
 	private CarnivoreFood carnFood;
 	//find a protoceratops
 	
-		
+	/**
+	 * Constructor for a Velociraptor
+	 * @param name name of this dino
+	 */
 	public Velociraptor(String name) {
 		super(name, 'v', 100);
 		hunger = 20;
@@ -33,18 +36,4 @@ public class Velociraptor extends Dinosaur {
 		return new Actions(new EatAction(this));
 	}
 
-	/**
-	 * Figure out what to do next.
-	 * 
-	 * FIXME: wanders around at random, or if no suitable MoveActions are available, it
-	 * just stands there.  That's boring.
-	 * 
-	 * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
-	 */
-//	@Override
-//	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-//		super.playTurn(actions, lastAction, map, display);
-//	
-//		return new DoNothingAction();
-//	}
 }

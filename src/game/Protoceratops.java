@@ -14,7 +14,6 @@ import edu.monash.fit2099.engine.Item;
  *
  */
 public class Protoceratops extends Dinosaur {
-	// Will need to change this to a collection if Protoceratops gets additional Behaviours.
 	
 	GameMap map;
 	/** 

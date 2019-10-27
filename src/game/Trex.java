@@ -14,11 +14,21 @@ public class Trex extends Dinosaur {
 
 	GameMap map;
 	private CarnivoreFood carnFood;
-	
+	/**
+	 * Constructor for Trex
+	 * @param name
+	 * @param displayChar
+	 * @param hitPoints
+	 */
 	public Trex(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 		// TODO Auto-generated constructor stub
 	}
+	/**
+	 * Main constructor for Trex
+	 * @param name
+	 * sets hunger HP and Behaviour
+	 */
 	public Trex(String name) {
 		super(name, 'R', 100);
 		hunger = 20;

@@ -14,7 +14,6 @@ public class Tree extends Land {
 	
 	public Tree() {
 		super('+');
-		//this.addSkill(EnumCollection.EDIBLE);
 	}
 		
 
@@ -27,10 +26,11 @@ public class Tree extends Land {
 			displayChar = 't';
 		if (age == 10)
 			displayChar = 'T';
-		
-
+				
+		/**
+		 * Gets the surrounding ground types and if it fits the required type then random chance to grow a tree
+		 */
 		try {
-		//if (location.map().getYRange().contains(location.y()) && location.map().getYRange().contains(location.x())) {
 		if (checkSurroundings(location)){
 			locations = getSurroundings(location);
 			//randomly grows grass
@@ -38,12 +38,7 @@ public class Tree extends Land {
 				if (locations.get(i).getGround().toString().contains("Dirt") || locations.get(i).getGround().toString().contains("Grass")) {
 					double random = Math.random();
 					if (random < 0.005) {
-						//System.out.println("Tree");
-						//System.out.println(locations.get(i).getGround());
-						locations.get(i).setGround(new Tree());
-						
-						//System.out.println(locations.get(i).getGround());
-						
+						locations.get(i).setGround(new Tree());						
 					}
 				}
 			}

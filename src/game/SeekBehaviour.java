@@ -14,7 +14,12 @@ import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.MoveActorAction;
 
 /**
- * Behaviour for dinosaurs to actively seek a given target
+ * Behaviour for herbivorous dinosaurs to actively seek a given target; ground or an item
+ */
+/**
+ * 
+ * @ Test
+ *
  */
 public class SeekBehaviour implements Behaviour {
 	private Random random = new Random();
@@ -26,11 +31,16 @@ public class SeekBehaviour implements Behaviour {
 	private Item foodMisc;
 	private Boolean isGround = false;
 	
-	
+	/**
+	 * 
+	 * @param foodSource
+	 * @param itemFood
+	 * @param secondaryfoodSource
+	 * @param secondaryitemFood
+	 * @param miscFood
+	 */
 	public SeekBehaviour(String foodSource, Item itemFood, String secondaryfoodSource,Item secondaryitemFood,Item miscFood) {
-		//
-		//FIND CLOSEST TREE
-		//		
+				
 		food = foodSource;
 		food2 = secondaryfoodSource;
 		foodItem = itemFood;
@@ -39,7 +49,11 @@ public class SeekBehaviour implements Behaviour {
 		
 		//this.target = subject;
 	}
-
+/**
+ * multiple constructors again to allow multiple herbivorous dinos to use
+ * @param foodSource
+ * @param herbivoreFood
+ */
 	public SeekBehaviour(String foodSource, HerbivoreFood herbivoreFood) {
 		food = foodSource;
 		foodItem = herbivoreFood;
@@ -55,13 +69,20 @@ public class SeekBehaviour implements Behaviour {
 		ArrayList<Action> actions = new ArrayList<Action>();
 		if(!map.contains(actor))
 		return null;
-		
+		/**
+		 * @param minX actors location x - 5
+		 * @param minY 
+		 * @param maxX
+		 * @param maxY
+		 */
 		Location here = map.locationOf(actor);
 		int minX;
 		int minY;
 		int maxX;
 		int maxY;
-		
+		/*
+		 * Sets the values of the variables above to a 5x5 grid around the Dino
+		 */
 		//x min
 		if (here.x()-5 <= map.getXRange().min()) {minX =  map.getXRange().min();}
 		else {minX = here.x()-5;}
@@ -74,10 +95,13 @@ public class SeekBehaviour implements Behaviour {
 		//maxY
 		if (here.x()-5 <= map.getYRange().max()) {maxY = map.getYRange().max();}
 		else {maxY = here.y()+5;}
+		/*
+		 * Searches in a 5x5 block for a target
+		 */
 		outerloop:
-
 			for (int i = minX; i < maxX; i++) {
 				for (int k = minY; k < maxY; k++) {
+					//checks the 
 					if (food !=null && map.at(i, k).getGround().toString().contains(food)){
 						target = map.at(i,k);
 						isGround = true;
@@ -89,18 +113,18 @@ public class SeekBehaviour implements Behaviour {
 						break outerloop;
 
 					}
-					else if (foodItem!=null&& map.at(i, k).getItems().contains(foodItem)){
+					else if (foodItem!=null&&map.at(i, k).getItems().toString().contains(foodItem.toString())){
 						target = map.at(i,k);
 						isGround = false;
 						break outerloop;
 					}
-					else if(foodItem2!=null&& map.at(i, k).getItems().contains(foodItem2))
+					else if(foodItem2!=null&&map.at(i, k).getItems().toString().contains(foodItem2.toString()))
 					{
 						target = map.at(i,k);
 						isGround = false;
 						break outerloop;
 					}
-					else if(foodMisc!=null&& map.at(i, k).getItems().contains(foodMisc))
+					else if(foodMisc!=null&&map.at(i, k).getItems().toString().contains(foodMisc.toString()))
 					{
 						target = map.at(i,k);
 						isGround = false;
@@ -110,7 +134,7 @@ public class SeekBehaviour implements Behaviour {
 				}
 	
 			}		
-		
+		//tracking action for target
 		int currentDistance = distance(here, target);
 		for (Exit exit : here.getExits()) {
 			Location destination = exit.getDestination();
@@ -121,6 +145,7 @@ public class SeekBehaviour implements Behaviour {
 				}
 			}
 		}
+		//If the dino is on the same grid block 
 		if (currentDistance == 0) 
 		{
 			if (isGround == true) {
@@ -152,7 +177,7 @@ public class SeekBehaviour implements Behaviour {
 		
 				
 		}
-		//Wander Behaviour
+		//Wander Behaviour if no target is found
 		for (Exit exit : map.locationOf(actor).getExits()) {
             Location destination = exit.getDestination();
             if (destination.canActorEnter(actor)) {

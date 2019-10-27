@@ -11,9 +11,12 @@ import game.CarnivoreFood;
  */
 public class Plesioaur extends Dinosaur {
 
+	/**
+	 * @param carnFood variable to hold the type marine food so that the dinos can hunt for it
+	 */
 	GameMap map;
 	public List<Behaviour> actionFactories = new ArrayList<Behaviour>();
-	private CarnivoreFood carnFood;
+	private MarineFood marnFood;
 	
 	
 
@@ -26,23 +29,8 @@ public class Plesioaur extends Dinosaur {
 		super(name, 'F', 100);
 		hunger = 70;
 		hitPoints = 50;
-		this.behaviour = new HuntBehaviour("Fish", carnFood, new Corpse("Dead"));
+		this.behaviour = new HuntBehaviour("Fish", marnFood, new Corpse("Dead"));
 		this.addSkill(SkillCollection.WATER_WALK);
 		// TODO Auto-generated constructor stub
 	}
-
-	@Override
-	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
-		return new Actions(new EatAction(this));
-	}
-
-	/**
-	 * Figure out what to do next.
-	 * 
-	 * FIXME: wanders around at random, or if no suitable MoveActions are available, it
-	 * just stands there.  That's boring.
-	 * 
-	 * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
-	 */
-	
 }

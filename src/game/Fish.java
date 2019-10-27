@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.*;
  */
 public class Fish extends Dinosaur {
 
-	// Will need to change this to a collection if Protoceratops gets additional Behaviours.
+	
 	private Behaviour behaviour;
 	GameMap map;
 	int age = 0;
@@ -23,14 +23,8 @@ public class Fish extends Dinosaur {
 		behaviour = new WanderBehaviour();
 		foodValue = 10;
 	}
-
-	@Override
-	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
-		return new Actions(new AttackAction(this));
-	}
-
 	/**
-	 *
+	 *@returns an action for the fishes turn. Also fish dies after 20 turns
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {

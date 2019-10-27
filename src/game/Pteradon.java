@@ -9,6 +9,12 @@ import edu.monash.fit2099.engine.GameMap;
 
 public class Pteradon extends Dinosaur {
 
+	/**
+	 * 
+	 * @param name 
+	 * @param displayChar the char on the map
+	 * @param hitPoints how much hp the dino has
+	 */
 	public Pteradon(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 		// TODO Auto-generated constructor stub
@@ -17,6 +23,7 @@ public class Pteradon extends Dinosaur {
 	public List<Behaviour> actionFactories = new ArrayList<Behaviour>();
 	private CarnivoreFood carnFood;
 	
+	//adds skills and behaviours to allow dino to do its thing
 	public Pteradon(String name) {
 		super(name, 'N', 100);
 		hunger = 70;
