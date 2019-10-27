@@ -176,21 +176,23 @@ public class HuntBehaviour extends Action implements Behaviour {
 		/*
 		 * checks grid square to see if the targetItem is there
 		 * Could do this in one if statement with itemTarget
+		 * Second if isn't used (i think) keeping it there just incase :)
 		 */
 		else if(targetLocation!=null) {
 			for (int j = 0; j < targetLocation.getItems().size(); j++) {
-				if (targetLocation.getItems().get(j).toString().contains(foodItem1.toString())) {
-					int health = foodItem1.asFood().getFoodValue();
-					targetLocation.removeItem(targetLocation.getItems().get(j));
-					return new HealAction(health);
-				}
-				
-				if (targetLocation.getItems().get(j).toString().contains(Corpses.toString())) {
-					int health = Corpses.asFood().getFoodValue();
-					targetLocation.removeItem(targetLocation.getItems().get(j));
-					System.out.print(health);
-					return new HealAction(health);
-					
+				if (targetLocation.getItems().get(j)!= null) {
+					if (targetLocation.getItems().get(j).toString().contains(itemTarget.toString())) {
+						int health = itemTarget.asFood().getFoodValue();
+						targetLocation.removeItem(targetLocation.getItems().get(j));
+						return new HealAction(health);
+					}					
+					else if (targetLocation.getItems().get(j).toString().contains(Corpses.toString())) {
+						int health = Corpses.asFood().getFoodValue();
+						targetLocation.removeItem(targetLocation.getItems().get(j));
+						System.out.print(health);
+						return new HealAction(health);
+						
+					}
 				}
 			}
 			

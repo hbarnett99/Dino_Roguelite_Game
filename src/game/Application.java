@@ -90,7 +90,7 @@ public class Application {
 		southGameMap.at(8, 6).addActor(new Protoceratops("Protoceratops"));
 		southGameMap.at(10, 12).addActor(new Protoceratops("Protoceratops"));
 		southGameMap.at(60, 11).addActor(new Velociraptor("Velociraptor"));
-		//southGameMap.at(63, 12).addActor(new Trex("Trex"));
+		southGameMap.at(63, 12).addActor(new Trex("Trex"));
 		southGameMap.at(62, 11).addItem(new Corpse("Dead"));
 	
 		//Populate North Map
