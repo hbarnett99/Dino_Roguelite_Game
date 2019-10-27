@@ -23,6 +23,7 @@ public class Water extends ExpansiveGround {
 	 */
 	public Water() {
 		super('~');
+		addSkill(SkillCollection.WATER_WALK);
 	}
 	
 	@Override

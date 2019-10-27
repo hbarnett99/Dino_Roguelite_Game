@@ -18,11 +18,12 @@ public class Fish extends Dinosaur {
 	 */
 	
 	public Fish() {
-		super("Fish", '>', 1);
+		super("Fish", '>', 1, Egg.DinosaurType.NULL);
 		this.addSkill(SkillCollection.WATER_WALK);
 		behaviour = new WanderBehaviour();
 		foodValue = 10;
 	}
+
 	/**
 	 *@return an action for the fishes turn. Also fish dies after 20 turns
 	 */

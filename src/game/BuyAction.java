@@ -15,7 +15,7 @@ public class BuyAction extends SelectAction {
 	/**
 	 * Array of Items that the shop sells
 	 */
-	ArrayList<Item> shopStock = new ArrayList<Item>();
+	ArrayList<SaleItem> shopStock = new ArrayList<>();
 
 	/**
 	 * Constructor adds all possible items that can be purchased

@@ -35,9 +35,9 @@ public class Dinosaur extends Actor {
 	 */
 	public Behaviour behaviour;
 	
-	public Dinosaur(String name, char displayChar, int hitPoints) {
+	public Dinosaur(String name, char displayChar, int hitPoints, DinosaurType initDinoType) {
 		super(name, displayChar, hitPoints);
-		
+		dinoType = initDinoType;
 	}
 	/**
 	 * Method for decrementing hunger and returning an action for each dino 
@@ -55,9 +55,9 @@ public class Dinosaur extends Actor {
 		 if (hunger > 20) {
 			 double random = Math.random();
 				if (random < 0.001) {
-					map.locationOf(this).addItem(new Egg(dinoType, true));				
+					map.locationOf(this).addItem(new Egg(dinoType, true));
 				}
-			
+
 		}
 		 Action action = behaviour.getAction(this, map);
 			//Action action = factory.getAction(this, map);

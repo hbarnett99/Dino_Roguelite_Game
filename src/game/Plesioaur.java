@@ -21,12 +21,12 @@ public class Plesioaur extends Dinosaur {
 	
 
 	public Plesioaur(String name, char displayChar, int hitPoints) {
-		super(name, 'F', 200);
+		super(name, 'F', 200, Egg.DinosaurType.PLESIOSAUR);
 		// TODO Auto-generated constructor stub
 	}
 
 	public Plesioaur(String name) {
-		super(name, 'F', 100);
+		super(name, 'F', 100, Egg.DinosaurType.PLESIOSAUR);
 		hunger = 70;
 		hitPoints = 50;
 		this.behaviour = new HuntBehaviour("Fish", marnFood, new Corpse("Dead"));

@@ -23,7 +23,7 @@ public class Protoceratops extends Dinosaur {
 	 * @param name the name of this Protoceratops
 	 */
 	public Protoceratops(String name) {
-		super(name, 'd', 100);
+		super(name, 'd', 100, Egg.DinosaurType.PROTOCERATOPS);
 		hunger = 20;
 		hitPoints = 50;
 		foodValue = 10;

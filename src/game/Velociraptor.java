@@ -23,7 +23,7 @@ public class Velociraptor extends Dinosaur {
 	 * @param name name of this dino
 	 */
 	public Velociraptor(String name) {
-		super(name, 'v', 100);
+		super(name, 'v', 100, Egg.DinosaurType.VELOCIRAPTOR);
 		hunger = 20;
 		hitPoints = 50;
 		this.behaviour = new HuntBehaviour("Proto", carnFood, new Corpse("Dead"));
