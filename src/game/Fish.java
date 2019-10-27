@@ -24,7 +24,7 @@ public class Fish extends Dinosaur {
 		foodValue = 10;
 	}
 	/**
-	 *@returns an action for the fishes turn. Also fish dies after 20 turns
+	 *@return an action for the fishes turn. Also fish dies after 20 turns
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {

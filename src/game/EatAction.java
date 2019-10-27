@@ -12,7 +12,7 @@ import edu.monash.fit2099.engine.Item;
 public class EatAction  extends Action {
 
 	/**
-	 * @param target actor to be attacked
+	 * Actor to be attacked
 	 */
 	protected Actor target;
 
@@ -21,7 +21,7 @@ public class EatAction  extends Action {
 	}
 	/**
 	 * method for Eating the target actor
-	 * @returns a displayu string saying the target was eaten and who by
+	 * @return a displayu string saying the target was eaten and who by
 	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {

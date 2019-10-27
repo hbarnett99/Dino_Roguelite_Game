@@ -11,7 +11,7 @@ public class Pteradon extends Dinosaur {
 
 	/**
 	 * 
-	 * @param name 
+	 * @param name The name of the Pteradon
 	 * @param displayChar the char on the map
 	 * @param hitPoints how much hp the dino has
 	 */

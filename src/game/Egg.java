@@ -10,7 +10,7 @@ public class Egg extends Food{
 	/**
 	 * Enum for the Egg's type, this will determine what the egg will hatch into.
 	 */	
-	protected enum DinosaurType {PROTOCERATOPS, VELOCIRAPTOR, PLESIOSAUR, PTERANODON,T_REX}
+	protected enum DinosaurType {PROTOCERATOPS, VELOCIRAPTOR, PLESIOSAUR, PTERANODON, T_REX}
 	
 	private int age = 0;
 	private DinosaurType dinoType;
@@ -53,7 +53,7 @@ public class Egg extends Food{
 			location.addActor(new Plesioaur("Plesioaur"));
 		}
 		else if (dinoType == DinosaurType.PTERANODON) {
-			//location.addActor(new Pteranodon("Pteranodon"));
+			location.addActor(new Pteradon("Pteranodon"));
 		}
 		else if (dinoType == DinosaurType.T_REX) {
 			location.addActor(new Trex("T-Rex"));

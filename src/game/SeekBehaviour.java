@@ -16,11 +16,6 @@ import edu.monash.fit2099.engine.MoveActorAction;
 /**
  * Behaviour for herbivorous dinosaurs to actively seek a given target; ground or an item
  */
-/**
- * 
- * @ Test
- *
- */
 public class SeekBehaviour implements Behaviour {
 	private Random random = new Random();
 	private Location target = null;
@@ -51,8 +46,8 @@ public class SeekBehaviour implements Behaviour {
 	}
 /**
  * multiple constructors again to allow multiple herbivorous dinos to use
- * @param foodSource
- * @param herbivoreFood
+ * @param foodSource	The source of food
+ * @param herbivoreFood	The Herbivore item
  */
 	public SeekBehaviour(String foodSource, HerbivoreFood herbivoreFood) {
 		food = foodSource;
