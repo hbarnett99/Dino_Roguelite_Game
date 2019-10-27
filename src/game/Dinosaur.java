@@ -1,12 +1,15 @@
 package game;
 
 import edu.monash.fit2099.engine.Action;
+
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
 import game.Behaviour;
+import game.Egg;
+import game.Egg.DinosaurType;
 
 /**
  * The base class for Dinosaurs
@@ -15,6 +18,8 @@ import game.Behaviour;
 
 public class Dinosaur extends Actor {
 
+	
+	protected DinosaurType dinoType;
 	/**
 	 * Hunger value for dinos
 	 */
@@ -43,6 +48,16 @@ public class Dinosaur extends Actor {
 		hunger -=1;
 		 if (hunger <= 0) {
 			return new dieAction();
+		}
+		 /**
+		  * Random chance to 'breed' an egg if A dino is healthy
+		  */
+		 if (hunger > 20) {
+			 double random = Math.random();
+				if (random < 0.001) {
+					map.locationOf(this).addItem(new Egg(dinoType, true));				
+				}
+			
 		}
 		 Action action = behaviour.getAction(this, map);
 			//Action action = factory.getAction(this, map);
