@@ -33,11 +33,11 @@ public class SeekBehaviour implements Behaviour {
 	
 	/**
 	 * 
-	 * @param foodSource
-	 * @param itemFood
-	 * @param secondaryfoodSource
-	 * @param secondaryitemFood
-	 * @param miscFood
+	 * @param foodSource main ground food source
+	 * @param itemFood	item food source
+	 * @param secondaryfoodSource	secondary ground food source
+	 * @param secondaryitemFood	secondary item food source
+	 * @param miscFood	miscellaneous item food source, useful if I need to extend seekBehaviour
 	 */
 	public SeekBehaviour(String foodSource, Item itemFood, String secondaryfoodSource,Item secondaryitemFood,Item miscFood) {
 				
