@@ -1,7 +1,0 @@
-HuntBehaviour Interaction Diagram
-https://www.lucidchart.com/documents/view/7da45db5-559d-4aeb-89f6-8c7c4241c9ba
-
-UML Class Diagram 
-https://www.lucidchart.com/documents/view/18aa16d7-a2e7-4a3f-b0c6-0cb99cb2270a
-
-BuyAction Interaction Diagram
