@@ -20,6 +20,7 @@ public class Reed extends ExpansiveGround {
 	public Reed() {
 		super('(');
 		setName("Reed");
+		addSkill(SkillCollection.WATER_WALK);
 		// TODO Auto-generated constructor stub
 	}
 	

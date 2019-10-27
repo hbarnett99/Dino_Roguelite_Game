@@ -10,7 +10,7 @@ public class Egg extends Food{
 	/**
 	 * Enum for the Egg's type, this will determine what the egg will hatch into.
 	 */	
-	protected enum DinosaurType {PROTOCERATOPS, VELOCIRAPTOR, PLESIOSAUR, PTERANODON, T_REX}
+	protected enum DinosaurType {PROTOCERATOPS, VELOCIRAPTOR, PLESIOSAUR, PTERANODON, T_REX, NULL}
 	
 	private int age = 0;
 	private DinosaurType dinoType;
@@ -30,11 +30,30 @@ public class Egg extends Food{
 	
 	@Override
 	public void tick(Location location) {
-		age++;
+		boolean canAge = false;
+
+		//Makes it so Plesiosaur eggs only age if next to water or reeds
+		if (dinoType == DinosaurType.PLESIOSAUR){
+			for (int i = 0; i < location.getExits().size(); i++){
+				if (location.getExits().get(i).getDestination().getGround().hasSkill(SkillCollection.WATER_WALK)){
+					canAge = true;
+				}
+			}
+		}
+		else{
+			canAge = true;
+		}
+
+		//Ticks the age of the egg
+		if (canAge){
+			age++;
+		}
+
+		//Hatches the egg
 		if (age == 30) {
 			hatch(location);
 		}
-		System.out.println("age = " + age);
+		System.out.println(this.name + " age: " + age);
 	}
 	
 	/**

@@ -21,7 +21,7 @@ public class Trex extends Dinosaur {
 	 * @param hitPoints		The amount of health it has
 	 */
 	public Trex(String name, char displayChar, int hitPoints) {
-		super(name, displayChar, hitPoints);
+		super(name, displayChar, hitPoints, Egg.DinosaurType.T_REX);
 		// TODO Auto-generated constructor stub
 	}
 	/**
@@ -30,11 +30,11 @@ public class Trex extends Dinosaur {
 	 * sets hunger HP and Behaviour
 	 */
 	public Trex(String name) {
-		super(name, 'R', 100);
+		super(name, 'R', 100, Egg.DinosaurType.T_REX);
 		hunger = 20;
 		hitPoints = 50;
 		this.behaviour = new HuntBehaviour("Proto", "Veloc", carnFood, new Corpse("Dead"));
-		this.addSkill(SkillCollection.LAND_WALK);		
+		this.addSkill(SkillCollection.LAND_WALK);
 	}
 	
 	
