@@ -24,8 +24,19 @@ Player, Food, Tag, Shop - 27th Sept
 Testing - 29th Sept
 Implementation, refining and leeway for issues - 4th Oct
 
-<<<<<<< HEAD
+ASSIGNMENT 3
+Tim
+Refactoring Behaviours
+Plesioaur, Pteradon, Trex, 
+
+Henry
+Extending the park
+Marine Ecology
+Ending the Game
+
+
+<<<<<<< 
 I accept the WBA
-=======
+
 I accept- Henry Barnett
->>>>>>> b54d7f0fc59bf54c040b804f9c2abce5f239efb0
+>>>>>>> 
